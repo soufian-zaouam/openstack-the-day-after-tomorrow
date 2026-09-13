@@ -1,0 +1,17 @@
+# Guard rail: this repository distributes the PDF through GitHub Releases only.
+# Manuscript sources, layouts and build artefacts must never be committed here.
+*.docx
+*.doc
+*.odt
+*.tex
+*.aux
+*.log
+*.toc
+*.indd
+*.pdf
+drafts/
+build/
+src/
+manuscript/
+.DS_Store
+Thumbs.db
