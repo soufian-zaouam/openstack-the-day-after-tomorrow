@@ -1,0 +1,23 @@
+name: Suggestion or question
+description: Suggest an improvement, a missing topic, or ask a question about the content.
+title: "[Suggestion] "
+labels: ["suggestion"]
+body:
+  - type: input
+    id: version
+    attributes:
+      label: Book version
+      placeholder: v1.0
+    validations:
+      required: true
+  - type: input
+    id: location
+    attributes:
+      label: Related chapter / section (if any)
+  - type: textarea
+    id: content
+    attributes:
+      label: Your suggestion or question
+      description: Context from your own production experience is especially welcome — please keep it generic (no organisation, client or environment identifiable).
+    validations:
+      required: true
