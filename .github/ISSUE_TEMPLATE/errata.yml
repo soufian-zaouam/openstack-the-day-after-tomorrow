@@ -1,0 +1,50 @@
+name: Errata
+description: Report a technical error, an inaccuracy, a typo or an unclear passage.
+title: "[Errata] "
+labels: ["errata"]
+body:
+  - type: input
+    id: version
+    attributes:
+      label: Book version
+      description: Printed on the title page and in the PDF metadata (e.g. v1.0).
+      placeholder: v1.0
+    validations:
+      required: true
+  - type: input
+    id: location
+    attributes:
+      label: Page / chapter / section
+      placeholder: "p. 142, Chapter 9, section 'Patching at scale'"
+    validations:
+      required: true
+  - type: dropdown
+    id: kind
+    attributes:
+      label: Type of issue
+      options:
+        - Technical error or inaccuracy
+        - Outdated statement (OpenStack has changed)
+        - Typo / wording
+        - Unclear or ambiguous passage
+        - Broken or wrong reference
+    validations:
+      required: true
+  - type: textarea
+    id: description
+    attributes:
+      label: What is wrong?
+      description: Quote the passage if useful, then explain the problem.
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed correction (optional)
+      description: For a technical point, a primary source (official docs, specs, release notes) helps a lot.
+  - type: checkboxes
+    id: credit
+    attributes:
+      label: Credit
+      options:
+        - label: You may credit me (GitHub username) in the release notes if this correction is integrated.
