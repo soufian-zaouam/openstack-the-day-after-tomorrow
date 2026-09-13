@@ -1,0 +1,18 @@
+cff-version: 1.2.0
+message: "If you refer to this book, please cite it as below."
+type: generic
+title: "OpenStack, the Day After Tomorrow: Operating Mission-Critical OpenStack Platforms"
+authors:
+  - family-names: Zaouam
+    given-names: Soufian
+version: "1.0"
+date-released: 2026-09-13
+url: "https://github.com/soufian-zaouam/openstack-the-day-after-tomorrow"
+license: CC-BY-NC-ND-4.0
+keywords:
+  - OpenStack
+  - Day-2 operations
+  - private cloud
+  - platform engineering
+  - reliability
+  - governance
