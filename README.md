@@ -36,6 +36,29 @@ The book draws on more than five years of running OpenStack platforms in product
 
 Throughout, *Technical note*, *Principle* and *From the field* boxes separate documented OpenStack behaviour, the author's operating principles, and situations drawn from real operations.
 
+## Contents
+
+| Part | Chapters |
+| --- | --- |
+| | How to Read This Book · Introduction |
+| **I. Understanding the Problem** | 1. OpenStack Doesn't End at Deployment · 2. The Enemy Is Loss of Control · 3. Why Good Platforms Become Difficult to Operate · 4. The Control Loop |
+| **II. Assessing Control** | 5. Assessing Platform Control · 6. Measuring Control · 7. When Control Is Already Lost |
+| **III. Operating with Control** | 8. Visibility Before Action · 9. Stability and Change · 10. Recovery Is a Feature |
+| **IV. The Organization Behind the Platform** | 11. Documentation Is Operational Memory · 12. Building the Team Behind the Platform · 13. Decision Rights |
+| **V. Evolving Without Losing Control** | 14. Upgrades, Backports and Upstream Alignment · 15. Complexity, Technical Debt and Simplification · 16. Automation and Operational Complexity · 17. Security Is Platform Work · 18. Evolving a Mission-Critical Platform |
+| **VI. Decisions from the Field** | 19. When the Safe Decision Is to Stop · 20. Security, Capacity and Business Criticality |
+| | Conclusion: Keeping OpenStack Under Control |
+| **Appendices** | A. The Control Decision Framework · B. The Control Assessment Worksheet · C. A Minimum Change Decision Record · D. Control Review Questions · E. Operating Principles at a Glance · F. Glossary · References and Further Reading |
+
+**Short path for managers and sponsors** (as suggested in *How to Read This Book*): the Introduction, Chapters 1 to 3, Chapter 7, the last section of Chapter 12, Chapters 13 and 14 up to the first technical note, Chapters 19 and 20, the Conclusion, and Appendices D and E.
+
+## Companion resources
+
+<a href="https://github.com/soufian-zaouam/openstack-the-day-after-tomorrow-guide"><img src="https://raw.githubusercontent.com/soufian-zaouam/openstack-the-day-after-tomorrow-guide/main/images/01-cover.png" width="480" alt="OpenStack, the Day After Tomorrow — Short Guide"></a>
+
+- **[Short Guide](https://github.com/soufian-zaouam/openstack-the-day-after-tomorrow-guide)** — the book's ideas in 18 illustrated pages, one idea and one figure per page. The quickest way in, and a shared reference for teams and sponsors.
+- **[OpenStack Production Guide](https://github.com/soufian-zaouam/openstack-production-guide)** — the practical companion: troubleshooting by symptom, by command and by error message, the *One Command, One Investigation* series (20 episodes), and six anonymised incident cases in RCA format. Several *From the field* passages of the book are developed there with their technical file.
+
 ## Who it is for
 
 - Engineers and platform teams who operate, or are about to inherit, an OpenStack platform
@@ -56,7 +79,7 @@ Deployment is the beginning of the operational journey, not the end. The hard-wo
 |---|---|
 | **Current version** | v1.0 |
 | **Published** | September 2026 |
-| **Format** | PDF (English) |
+| **Format** | PDF (English), 116 pages |
 | **Download** | **[Latest release →](https://github.com/soufian-zaouam/openstack-the-day-after-tomorrow/releases/latest)** |
 
 The PDF is distributed exclusively through the [Releases](https://github.com/soufian-zaouam/openstack-the-day-after-tomorrow/releases) page of this repository. Each version is tagged, dated and accompanied by release notes. Previous versions remain available. See [CHANGELOG.md](CHANGELOG.md) for the history of changes.
@@ -89,6 +112,8 @@ A machine-readable citation is provided in [CITATION.cff](CITATION.cff).
 ## About the author
 
 Soufian Zaouam is a platform engineer focused on Day-2 operations, reliability and governance of mission-critical OpenStack platforms. This book is the first of a planned series of works on operating OpenStack in production.
+
+[LinkedIn](https://www.linkedin.com/in/soufian-zaouam) · [GitHub](https://github.com/soufian-zaouam)
 
 
 ---
