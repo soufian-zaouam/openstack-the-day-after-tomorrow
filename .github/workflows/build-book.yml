@@ -45,7 +45,7 @@ jobs:
       - name: Install pandoc, XeLaTeX, fonts and tools
         run: |
           sudo apt-get update -q
-          sudo apt-get install -y -q --no-install-recommends \
+          sudo DEBIAN_FRONTEND=noninteractive apt-get install -y -q --no-install-recommends \
             pandoc \
             texlive-xetex texlive-latex-recommended texlive-latex-extra \
             texlive-fonts-recommended fonts-texgyre lmodern fonts-dejavu-core \
