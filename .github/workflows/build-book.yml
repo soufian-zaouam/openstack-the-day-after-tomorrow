@@ -1,0 +1,156 @@
+name: Build the PDF edition
+
+# Every push to main (and every pull request) rebuilds the PDF from the
+# Markdown sources and verifies it. The PDF is kept as a workflow artifact.
+# A version tag (v1.1, v2.0, ...) additionally publishes the PDF as a GitHub
+# Release, which is the official distribution channel of the book.
+# The workflow can also be run by hand, optionally creating a release.
+
+on:
+  push:
+    branches: [main]
+    tags: ["v*"]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+    inputs:
+      release_tag:
+        description: "Create a GitHub Release with this tag (for example v1.1). Leave empty to only build."
+        required: false
+        default: ""
+
+permissions:
+  contents: write
+
+concurrency:
+  group: build-book-${{ github.ref }}
+  cancel-in-progress: false
+
+env:
+  PDF_NAME: openstack-the-day-after-tomorrow
+
+jobs:
+  build:
+    name: Build and verify
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    outputs:
+      version: ${{ steps.version.outputs.version }}
+      release_tag: ${{ steps.version.outputs.release_tag }}
+
+    steps:
+      - name: Check out the sources
+        uses: actions/checkout@v4
+
+      - name: Install pandoc, XeLaTeX, fonts and tools
+        run: |
+          sudo apt-get update -q
+          sudo apt-get install -y -q --no-install-recommends \
+            pandoc \
+            texlive-xetex texlive-latex-recommended texlive-latex-extra \
+            texlive-fonts-recommended lmodern fonts-dejavu-core \
+            librsvg2-bin poppler-utils python3-pip
+          pip3 install --quiet --break-system-packages pymupdf
+          pandoc --version | head -n 1
+          xelatex --version | head -n 1
+
+      - name: Work out the version to print on the copyright page
+        id: version
+        run: |
+          if [[ "${GITHUB_REF}" == refs/tags/v* ]]; then
+            tag="${GITHUB_REF#refs/tags/}"
+          elif [[ -n "${{ github.event.inputs.release_tag }}" ]]; then
+            tag="${{ github.event.inputs.release_tag }}"
+          else
+            tag=""
+          fi
+          if [[ -n "$tag" ]]; then
+            version="$tag"
+          else
+            version="development build ($(git rev-parse --short HEAD))"
+          fi
+          echo "version=$version" >> "$GITHUB_OUTPUT"
+          echo "release_tag=$tag" >> "$GITHUB_OUTPUT"
+          echo "Version: $version"
+
+      - name: Build the PDF from the Markdown sources
+        run: bash tools/pdf/build.sh "${{ steps.version.outputs.version }}"
+
+      - name: Verify the PDF
+        run: python3 tools/pdf/verify_pdf.py "build/${PDF_NAME}.pdf" "build/${PDF_NAME}.log"
+
+      - name: Render preview pages
+        run: |
+          mkdir -p build/preview
+          pdftoppm -r 60 -png -f 1 -l 4 "build/${PDF_NAME}.pdf" build/preview/front
+          pdftoppm -r 60 -png -f 12 -l 13 "build/${PDF_NAME}.pdf" build/preview/chapter-1
+          pdftoppm -r 60 -png -f 16 -l 16 "build/${PDF_NAME}.pdf" build/preview/figure-1-1
+          ls build/preview
+
+      - name: Name the PDF after the version
+        id: artifact
+        run: |
+          tag="${{ steps.version.outputs.release_tag }}"
+          suffix="${tag:-main-$(git rev-parse --short HEAD)}"
+          cp "build/${PDF_NAME}.pdf" "build/${PDF_NAME}-${suffix}.pdf"
+          echo "file=build/${PDF_NAME}-${suffix}.pdf" >> "$GITHUB_OUTPUT"
+
+      - name: Upload the PDF as a workflow artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ env.PDF_NAME }}-pdf
+          path: ${{ steps.artifact.outputs.file }}
+          if-no-files-found: error
+          retention-days: 90
+
+      - name: Upload the preview pages and build logs
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: build-preview-and-logs
+          path: |
+            build/preview/
+            build/*.log
+            build/*.tex
+          if-no-files-found: ignore
+          retention-days: 30
+
+      - name: Write the release notes
+        if: steps.version.outputs.release_tag != ''
+        run: |
+          tag="${{ steps.version.outputs.release_tag }}"
+          pages="$(pdfinfo "build/${PDF_NAME}.pdf" | awk '/^Pages/{print $2}')"
+          {
+            echo "**OpenStack, the Day After Tomorrow — Operating Mission-Critical OpenStack Platforms**, ${tag}."
+            echo
+            echo "This PDF was generated automatically by GitHub Actions from the Markdown sources of this repository"
+            echo "(commit ${GITHUB_SHA::7}) with pandoc and XeLaTeX, and verified before publication."
+            echo "${pages} pages, English. Licence: CC BY-NC-ND 4.0."
+            echo
+            # the section of CHANGELOG.md for this version, when it exists
+            awk -v tag="$tag" '
+              $0 ~ "^## \\[" tag "\\]" {p=1; next}
+              p && /^## / {exit}
+              p {print}
+            ' CHANGELOG.md > build/changelog-section.md
+            if [[ -s build/changelog-section.md ]]; then
+              echo "## What changed"
+              cat build/changelog-section.md
+            fi
+            echo
+            echo "Read the book online, chapter by chapter, in the [repository README](https://github.com/${GITHUB_REPOSITORY}#read-the-book-on-github)."
+          } > build/release-notes.md
+          cat build/release-notes.md
+
+      - name: Publish the GitHub Release
+        if: steps.version.outputs.release_tag != ''
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ steps.version.outputs.release_tag }}
+          target_commitish: ${{ github.sha }}
+          name: ${{ steps.version.outputs.release_tag }}
+          body_path: build/release-notes.md
+          files: ${{ steps.artifact.outputs.file }}
+          fail_on_unmatched_files: true
+          draft: false
+          prerelease: false
