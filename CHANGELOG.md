@@ -9,6 +9,11 @@ Versioning scheme:
 - **Minor** (`v1.1`): revised or expanded sections, new figures, corrections that change the technical content.
 - Simple typo fixes are batched into the next minor version rather than released on their own.
 
+## Unreleased
+
+- The full text of v1.0 is now published in this repository as Markdown, one file per chapter (`chapters/`, `appendices/`), with the five figures as SVG (`assets/figures/`). The content is that of the v1.0 PDF; no editorial change.
+- README rewritten around the online table of contents; CONTRIBUTING updated accordingly.
+
 ## [v1.0] — 2026-09-13
 
 First public edition.

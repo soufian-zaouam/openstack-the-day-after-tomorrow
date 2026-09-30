@@ -2,7 +2,7 @@
 
 Thank you for taking the time to improve this book.
 
-This repository distributes a finished, single-author book as a PDF. The manuscript sources are not published, so contributions take the form of **feedback through issues**, not pull requests on the text.
+This repository distributes a finished, single-author book, as a PDF and as Markdown (one file per chapter under `chapters/` and `appendices/`). Contributions take the form of **feedback through issues**: the text remains the author's, and every change to it goes through a published version.
 
 ## What is welcome
 
@@ -14,14 +14,14 @@ This repository distributes a finished, single-author book as a PDF. The manuscr
 
 1. Check the [open issues](https://github.com/soufian-zaouam/openstack-the-day-after-tomorrow/issues) to avoid duplicates.
 2. Open a new issue using the appropriate template (*Errata* or *Suggestion*).
-3. Indicate the **book version** (printed on the title page and in the PDF metadata) and the **page or section**.
+3. Indicate the **book version** (see `CHANGELOG.md`; printed on the title page of the PDF) and the **page** (PDF) or the **chapter file and section** (Markdown).
 4. For a technical objection, please give your reasoning and, where possible, a primary source (official OpenStack documentation, specs, release notes).
 
 Every issue is read. Corrections that are confirmed are credited in the release notes of the version that integrates them (unless you prefer not to be credited).
 
 ## Pull requests
 
-Pull requests are accepted only for the files of this repository itself (README, changelog, templates). Changes to the book's content are handled through issues, since the sources are maintained outside this repository.
+Pull requests are accepted for the files of this repository itself (README, changelog, templates) and for small, unambiguous corrections to the Markdown text (a typo, a broken link, a formatting glitch). Anything that changes the meaning of the text — a technical correction, a rewording, an addition — is handled through issues, so that it can be discussed and integrated into a versioned release of both the Markdown and the PDF.
 
 ## Scope and tone
 

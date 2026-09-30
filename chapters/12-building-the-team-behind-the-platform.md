@@ -1,0 +1,47 @@
+*Part IV — The Organization Behind the Platform*
+
+# Chapter 12 — Building the Team Behind the Platform
+
+A mission-critical OpenStack organization needs capability around the platform, and a group of specialists does not provide that on its own. Functional roles commonly include platform engineering, operations, delivery or change engineering, infrastructure, security, service or business owners, support, platform leadership and external specialists. These roles do not necessarily require separate teams, and roles are not decision rights: an engineer may execute an operation without being accountable for the capability, and a capability owner may be accountable without personally performing every task.
+
+## Ownership, accountability and its levels
+
+Ownership means responsibility for maintaining a capability. Accountability means being answerable for the outcome and its risk. Ownership can be distributed; accountability must remain visible. Technical accountability itself has levels. **Operational accountability** concerns whether an operation was performed correctly. **Capability accountability** concerns whether a technical capability remains operable, maintainable, changeable and recoverable over time. **Platform technical accountability** concerns the coherence of the whole OpenStack platform across services and dependencies. These are functional roles rather than job titles: in one organization they may be held by several people, in another some may be combined. All of them differ from business accountability, which determines what outcome and what level of risk the organization is willing to accept, while technical teams explain what the platform can safely do and what it risks.
+
+## Team design should follow the platform’s failure modes
+
+There is no universal OpenStack team structure. A small environment may combine platform engineering and operations; a large one may distribute responsibilities across specialist teams. The useful question is whether the organization can cover the platform’s important capabilities with sufficient knowledge, ownership and decision authority, whatever the chart says. If a critical failure crosses Nova, Neutron and the network fabric, the people involved need a way to work together regardless of reporting lines. The ownership model should answer what happens when a capability fails, not merely who has the component in their charter: if Neutron routing depends on infrastructure networking outside the OpenStack team’s ownership, the operating model must still define how the two teams coordinate diagnosis and recovery. Organizational boundaries must not become operational boundaries; the platform remains one system even when responsibilities are distributed, and someone must maintain the coherence of the whole capability. That is what platform accountability is for.
+
+## Redundancy of knowledge
+
+Critical knowledge needs redundancy, but redundancy is not staff duplication. It does not mean two people assigned to every task; it means enough distributed knowledge that no critical capability has a single point of failure. For a critical capability, one person may remain the deepest expert while several others can perform normal operation and recovery, and that is usually a more realistic and more valuable objective than uniform expertise. A primary/secondary model helps when it is treated as capability development rather than a permanent pairing: naming a secondary is not enough. The secondary must progressively perform real operations, take part in incidents, review changes and be able to explain the recovery, or the organization has only documented its dependency rather than reduced it.
+
+> **From the field.** A senior engineer was leaving, and the team did what teams are supposed to do: it organized the transfer of his knowledge before he left. After he had gone, two things turned out not to have been transferred, and neither had looked like knowledge while he was there. The first was the execution of upgrades through the deployment tooling: what had been written down turned out not to be enough for anyone else to run one. The second was the reason for a number of customizations and workarounds in the platform, which nobody else had needed to know as long as he was there to be asked. Both were rebuilt the slow way: by reading the deployment code, the configurations and the git history to reconstruct why things were as they were, by executing an upgrade in a test environment before trusting it in production, and by writing the reasons down as decision records once they had been recovered. The transfer had been organized; the knowledge that escaped it was the kind that only shows when someone else performs the work while the expert can still watch.
+
+## Onboarding, identity and workload
+
+Onboarding is part of reliability. New engineers need to understand the architecture, the dependencies, criticality, ownership, past incidents, recovery, governance and historical decisions, and the exercise described in Chapter 11 — a real procedure, executed alone, observed — transfers more of that than any document, because it exposes what the documents omit. Team identity is an operational asset rather than a human-resources concern: teams with a shared purpose are more likely to challenge unsafe changes, share knowledge and protect the platform beyond their immediate task, while a team that sees itself as a ticket-processing function has little incentive to improve the system that generates the tickets. Sustainable workload belongs in the same list, because the feedback loop that starts with an overloaded team is one of the most reliable ways a platform loses control:
+
+**Insufficient capacity** → **concentrated expertise** → **increased dependency** → **more operational pressure** → **even less capacity for improvement**
+
+Breaking that loop is part of platform reliability, and leadership’s role is to preserve the long-term view when short-term delivery pressure conflicts with lifecycle or operational risk.
+
+## Experts, external and internal
+
+Experts provide depth. They should be challenged rather than treated as unquestionable authorities. External specialists can be necessary, and the risk is not their involvement but leaving with the same dependency that existed when they arrived: a successful engagement increases internal understanding, improves documentation, transfers operational knowledge and clarifies future ownership. The question to ask at the end of any external engagement is whether the organization is more capable of operating the platform after the expert has gone. The same question applies to a vendor’s support contract, and Chapter 14 says what to ask of one.
+
+## When the team changes
+
+People leave, budgets change, responsibilities move, external specialists arrive and depart. A platform that depends on stable personnel is fragile by design, and a major organizational change can have consequences comparable to an architecture change: if a team loses the people who understand a particular dependency, the technical state has not changed but the organization’s ability to operate it has. That is a real platform risk, and it should be treated as one.
+
+Organizational change should therefore trigger a control review rather than a redistribution of tasks. Critical capabilities should be reviewed against the new team: who can operate Nova, who can diagnose Neutron, who can recover the messaging layer, who can perform the next upgrade, who can make a disruptive incident decision, who owns the business consequence. The answers may change even when the architecture does not, and simply moving responsibilities to whoever remains leaves the same weakness under a different name. When staffing decreases, the previous workload cannot be assumed to continue: the organization should identify which capabilities are critical, which activities can be simplified, which work can be automated safely and which changes should be postponed, and treat that as an explicit risk decision.
+
+Knowledge transfer is not a presentation. A training session proves that a session took place; the test is whether the new engineer can explain a dependency, perform a routine operation, investigate a realistic symptom and describe recovery. Knowledge becomes organizational capability when it can be exercised by more than the person who originally held it.
+
+Change can also be an opportunity. A review of responsibilities often exposes duplicated work, unused expertise, unclear ownership and chances to simplify. The goal is to preserve the capabilities the platform requires and redesign around the current reality, which may mean broader roles, different ownership, new escalation paths or stronger collaboration with infrastructure and security teams, rather than to recreate the previous organization. A transition handled this way leaves the platform more understandable than before: documentation updated, ownership clarified, obsolete processes removed, recovery tested with the new team. A healthy platform team periodically questions whether its organization still matches its platform, because growth, technology change, budget reductions and new dependencies all invalidate previous structures.
+
+> **Principle.** A team is resilient when the platform remains operable after its experts change.
+
+---
+
+[← Chapter 11 — Documentation Is Operational Memory](11-documentation-is-operational-memory.md) · [Contents](../README.md) · [Chapter 13 — Decision Rights →](13-decision-rights.md)

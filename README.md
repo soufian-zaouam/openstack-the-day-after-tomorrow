@@ -10,7 +10,7 @@
 
 This is the author's official repository for the book *OpenStack, the Day After Tomorrow*. It is the reference place to download the current edition, follow new versions, and report errors.
 
-The book is published as a **free PDF** and is an **independent, personal contribution to the OpenStack community**. It is not a publication of the OpenStack Foundation (OpenInfra Foundation), of a publisher, or of any employer or client, and it does not describe any specific organisation's platform.
+The book is published freely, as a **PDF** (see [Download](#download)) and as **Markdown, one file per chapter, readable directly on GitHub** (see [Read the book on GitHub](#read-the-book-on-github)). It is an **independent, personal contribution to the OpenStack community**. It is not a publication of the OpenStack Foundation (OpenInfra Foundation), of a publisher, or of any employer or client, and it does not describe any specific organisation's platform.
 
 ---
 
@@ -36,21 +36,70 @@ The book draws on more than five years of running OpenStack platforms in product
 
 Throughout, *Technical note*, *Principle* and *From the field* boxes separate documented OpenStack behaviour, the author's operating principles, and situations drawn from real operations.
 
-## Contents
+## Read the book on GitHub
 
-| Part | Chapters |
+The full text of the book is published in this repository as Markdown, **one file per chapter**, so that it can be read directly on GitHub, searched, linked to and quoted by section. The text is identical to the v1.0 PDF; the five figures are provided as SVG in [`assets/figures/`](assets/figures/).
+
+Start with [How to Read This Book](chapters/00-how-to-read-this-book.md), then follow the *Previous / Contents / Next* links at the bottom of every chapter. The PDF remains available for offline reading (see [Download](#download)).
+
+| | Chapter |
 | --- | --- |
-| | How to Read This Book · Introduction |
-| **I. Understanding the Problem** | 1. OpenStack Doesn't End at Deployment · 2. The Enemy Is Loss of Control · 3. Why Good Platforms Become Difficult to Operate · 4. The Control Loop |
-| **II. Assessing Control** | 5. Assessing Platform Control · 6. Measuring Control · 7. When Control Is Already Lost |
-| **III. Operating with Control** | 8. Visibility Before Action · 9. Stability and Change · 10. Recovery Is a Feature |
-| **IV. The Organization Behind the Platform** | 11. Documentation Is Operational Memory · 12. Building the Team Behind the Platform · 13. Decision Rights |
-| **V. Evolving Without Losing Control** | 14. Upgrades, Backports and Upstream Alignment · 15. Complexity, Technical Debt and Simplification · 16. Automation and Operational Complexity · 17. Security Is Platform Work · 18. Evolving a Mission-Critical Platform |
-| **VI. Decisions from the Field** | 19. When the Safe Decision Is to Stop · 20. Security, Capacity and Business Criticality |
-| | Conclusion: Keeping OpenStack Under Control |
-| **Appendices** | A. The Control Decision Framework · B. The Control Assessment Worksheet · C. A Minimum Change Decision Record · D. Control Review Questions · E. Operating Principles at a Glance · F. Glossary · References and Further Reading |
+| | [Front matter](chapters/00-front-matter.md) |
+| | [How to Read This Book](chapters/00-how-to-read-this-book.md) |
+| | [Introduction](chapters/00-introduction.md) |
+| **Part I — Understanding the Problem** | |
+| 1 | [OpenStack Doesn't End at Deployment](chapters/01-openstack-doesnt-end-at-deployment.md) |
+| 2 | [The Enemy Is Loss of Control](chapters/02-the-enemy-is-loss-of-control.md) |
+| 3 | [Why Good Platforms Become Difficult to Operate](chapters/03-why-good-platforms-become-difficult-to-operate.md) |
+| 4 | [The Control Loop](chapters/04-the-control-loop.md) |
+| **Part II — Assessing Control** | |
+| 5 | [Assessing Platform Control](chapters/05-assessing-platform-control.md) |
+| 6 | [Measuring Control](chapters/06-measuring-control.md) |
+| 7 | [When Control Is Already Lost](chapters/07-when-control-is-already-lost.md) |
+| **Part III — Operating with Control** | |
+| 8 | [Visibility Before Action](chapters/08-visibility-before-action.md) |
+| 9 | [Stability and Change](chapters/09-stability-and-change.md) |
+| 10 | [Recovery Is a Feature](chapters/10-recovery-is-a-feature.md) |
+| **Part IV — The Organization Behind the Platform** | |
+| 11 | [Documentation Is Operational Memory](chapters/11-documentation-is-operational-memory.md) |
+| 12 | [Building the Team Behind the Platform](chapters/12-building-the-team-behind-the-platform.md) |
+| 13 | [Decision Rights](chapters/13-decision-rights.md) |
+| **Part V — Evolving Without Losing Control** | |
+| 14 | [Upgrades, Backports and Upstream Alignment](chapters/14-upgrades-backports-and-upstream-alignment.md) |
+| 15 | [Complexity, Technical Debt and Simplification](chapters/15-complexity-technical-debt-and-simplification.md) |
+| 16 | [Automation and Operational Complexity](chapters/16-automation-and-operational-complexity.md) |
+| 17 | [Security Is Platform Work](chapters/17-security-is-platform-work.md) |
+| 18 | [Evolving a Mission-Critical Platform](chapters/18-evolving-a-mission-critical-platform.md) |
+| **Part VI — Decisions from the Field** | |
+| 19 | [When the Safe Decision Is to Stop](chapters/19-when-the-safe-decision-is-to-stop.md) |
+| 20 | [Security, Capacity and Business Criticality](chapters/20-security-capacity-and-business-criticality.md) |
+| | [Conclusion: Keeping OpenStack Under Control](chapters/21-conclusion-keeping-openstack-under-control.md) |
+| **Appendices** | |
+| A | [The Control Decision Framework](appendices/appendix-a-the-control-decision-framework.md) |
+| B | [The Control Assessment Worksheet](appendices/appendix-b-the-control-assessment-worksheet.md) |
+| C | [A Minimum Change Decision Record](appendices/appendix-c-a-minimum-change-decision-record.md) |
+| D | [Control Review Questions](appendices/appendix-d-control-review-questions.md) |
+| E | [Operating Principles at a Glance](appendices/appendix-e-operating-principles-at-a-glance.md) |
+| F | [Glossary](appendices/appendix-f-glossary.md) |
+| | [References and Further Reading](appendices/references-and-further-reading.md) |
 
-**Short path for managers and sponsors** (as suggested in *How to Read This Book*): the Introduction, Chapters 1 to 3, Chapter 7, the last section of Chapter 12, Chapters 13 and 14 up to the first technical note, Chapters 19 and 20, the Conclusion, and Appendices D and E.
+**Short path for managers and sponsors** (as suggested in *How to Read This Book*): the [Introduction](chapters/00-introduction.md), Chapters [1](chapters/01-openstack-doesnt-end-at-deployment.md) to [3](chapters/03-why-good-platforms-become-difficult-to-operate.md), Chapter [7](chapters/07-when-control-is-already-lost.md), the last section of Chapter [12](chapters/12-building-the-team-behind-the-platform.md), Chapters [13](chapters/13-decision-rights.md) and [14](chapters/14-upgrades-backports-and-upstream-alignment.md) up to the first technical note, Chapters [19](chapters/19-when-the-safe-decision-is-to-stop.md) and [20](chapters/20-security-capacity-and-business-criticality.md), the [Conclusion](chapters/21-conclusion-keeping-openstack-under-control.md), and Appendices [D](appendices/appendix-d-control-review-questions.md) and [E](appendices/appendix-e-operating-principles-at-a-glance.md).
+
+### Repository layout
+
+```text
+openstack-the-day-after-tomorrow/
+├── README.md              this page: presentation and table of contents
+├── chapters/              front matter, introduction, chapters 1–20 and the conclusion (one Markdown file each)
+├── appendices/            appendices A–F and the references
+├── assets/figures/        the book's figures (SVG)
+├── CHANGELOG.md           published versions
+├── CONTRIBUTING.md        how to report errata and suggestions
+├── CITATION.cff           machine-readable citation
+└── LICENSE                CC BY-NC-ND 4.0
+```
+
+Throughout the text, three kinds of boxed passage from the PDF are rendered as quotations: **Technical note** (verifiable OpenStack facts, with a reference), **Principle** (an operating rule the book recommends) and **From the field** (an operational situation and the decision it required).
 
 ## Companion resources
 
@@ -79,12 +128,12 @@ Deployment is the beginning of the operational journey, not the end. The hard-wo
 |---|---|
 | **Current version** | v1.0 |
 | **Published** | September 2026 |
-| **Format** | PDF (English), 116 pages |
+| **Format** | PDF (English), 116 pages · Markdown (this repository) |
 | **Download** | **[Latest release →](https://github.com/soufian-zaouam/openstack-the-day-after-tomorrow/releases/latest)** |
 
 The PDF is distributed exclusively through the [Releases](https://github.com/soufian-zaouam/openstack-the-day-after-tomorrow/releases) page of this repository. Each version is tagged, dated and accompanied by release notes. Previous versions remain available. See [CHANGELOG.md](CHANGELOG.md) for the history of changes.
 
-Only the PDF is published. The manuscript sources are not part of this repository.
+The Markdown text in [`chapters/`](chapters/) and [`appendices/`](appendices/) follows the same version as the PDF; the version in force is the one stated in [CHANGELOG.md](CHANGELOG.md).
 
 ## Reporting errors and suggesting improvements
 
@@ -93,7 +142,7 @@ Corrections, technical objections and suggestions are welcome and are the main w
 - **Found a mistake?** (technical error, typo, unclear passage, broken reference) → [open an *Errata* issue](https://github.com/soufian-zaouam/openstack-the-day-after-tomorrow/issues/new?template=errata.yml)
 - **Have a suggestion or a question about the content?** → [open a *Suggestion* issue](https://github.com/soufian-zaouam/openstack-the-day-after-tomorrow/issues/new?template=suggestion.yml)
 
-Please mention the book version and the page or section concerned. Confirmed corrections are listed in the [changelog](CHANGELOG.md) and integrated into the next version. See [CONTRIBUTING.md](CONTRIBUTING.md) for details.
+Please mention the book version and the page (PDF) or the chapter file and section (Markdown) concerned. Confirmed corrections are listed in the [changelog](CHANGELOG.md) and integrated into the next version. See [CONTRIBUTING.md](CONTRIBUTING.md) for details.
 
 ## License
 
