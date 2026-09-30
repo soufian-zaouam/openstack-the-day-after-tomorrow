@@ -20,10 +20,10 @@ On Debian or Ubuntu:
 
 ```bash
 sudo apt-get install pandoc texlive-xetex texlive-latex-recommended texlive-latex-extra \
-                     texlive-fonts-recommended lmodern fonts-dejavu-core librsvg2-bin poppler-utils
+                     texlive-fonts-recommended fonts-texgyre lmodern fonts-dejavu-core librsvg2-bin poppler-utils
 pip install pymupdf
 
-tools/pdf/build.sh v1.1        # or without argument for a development build
+bash tools/pdf/build.sh v1.1   # or without argument for a development build
 python3 tools/pdf/verify_pdf.py build/openstack-the-day-after-tomorrow.pdf build/openstack-the-day-after-tomorrow.log
 ```
 
