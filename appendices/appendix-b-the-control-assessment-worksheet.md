@@ -5,7 +5,7 @@
 For each critical OpenStack capability, record the evidence for every question. If the answer is “we think so”, the control level is not yet established.
 
 | Question | Evidence |
-| --- | --- |
+| ------------------------ | ---------------- |
 | What business capability depends on it? | |
 | Which OpenStack services participate? | |
 | Which external dependencies participate? | |

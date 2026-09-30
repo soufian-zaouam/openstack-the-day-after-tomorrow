@@ -1,0 +1,16 @@
+# Pandoc metadata for the PDF edition. Used by tools/pdf/build.sh.
+title: "OpenStack, the Day After Tomorrow"
+subtitle: "Operating Mission-Critical OpenStack Platforms"
+author: "Soufian Zaouam"
+lang: en-GB
+subject: "Operating mission-critical OpenStack platforms in production (Day-2 operations)"
+keywords: [OpenStack, Day-2 operations, private cloud, platform engineering, reliability, governance]
+
+documentclass: book
+classoption: [openany, twoside]
+fontsize: 11pt
+toc: true
+toc-depth: 0
+toc-title: Contents
+colorlinks: false
+links-as-notes: false

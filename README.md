@@ -38,7 +38,7 @@ Throughout, *Technical note*, *Principle* and *From the field* boxes separate do
 
 ## Read the book on GitHub
 
-The full text of the book is published in this repository as Markdown, **one file per chapter**, so that it can be read directly on GitHub, searched, linked to and quoted by section. The text is identical to the v1.0 PDF; the five figures are provided as SVG in [`assets/figures/`](assets/figures/).
+The full text of the book is published in this repository as Markdown, **one file per chapter**, so that it can be read directly on GitHub, searched, linked to and quoted by section. The text is that of the PDF, which is generated from these very files; the five figures are provided as SVG in [`assets/figures/`](assets/figures/).
 
 Start with [How to Read This Book](chapters/00-how-to-read-this-book.md), then follow the *Previous / Contents / Next* links at the bottom of every chapter. The PDF remains available for offline reading (see [Download](#download)).
 
@@ -93,6 +93,8 @@ openstack-the-day-after-tomorrow/
 ├── chapters/              front matter, introduction, chapters 1–20 and the conclusion (one Markdown file each)
 ├── appendices/            appendices A–F and the references
 ├── assets/figures/        the book's figures (SVG)
+├── tools/pdf/             how the PDF is generated from the Markdown (pandoc + XeLaTeX)
+├── .github/workflows/     build-book.yml: builds, verifies and releases the PDF
 ├── CHANGELOG.md           published versions
 ├── CONTRIBUTING.md        how to report errata and suggestions
 ├── CITATION.cff           machine-readable citation
@@ -126,14 +128,14 @@ Deployment is the beginning of the operational journey, not the end. The hard-wo
 
 | | |
 |---|---|
-| **Current version** | v1.0 |
+| **Current version** | v1.1 |
 | **Published** | September 2026 |
-| **Format** | PDF (English), 116 pages · Markdown (this repository) |
+| **Format** | PDF (English), 114 pages · Markdown (this repository) |
 | **Download** | **[Latest release →](https://github.com/soufian-zaouam/openstack-the-day-after-tomorrow/releases/latest)** |
 
 The PDF is distributed exclusively through the [Releases](https://github.com/soufian-zaouam/openstack-the-day-after-tomorrow/releases) page of this repository. Each version is tagged, dated and accompanied by release notes. Previous versions remain available. See [CHANGELOG.md](CHANGELOG.md) for the history of changes.
 
-The Markdown text in [`chapters/`](chapters/) and [`appendices/`](appendices/) follows the same version as the PDF; the version in force is the one stated in [CHANGELOG.md](CHANGELOG.md).
+The PDF is **generated automatically from the Markdown sources** of this repository ([`chapters/`](chapters/), [`appendices/`](appendices/), [`assets/figures/`](assets/figures/)) by a GitHub Actions workflow that rebuilds and verifies it on every change; a version tag publishes it as a release. See [`tools/pdf/README.md`](tools/pdf/README.md) for the toolchain (pandoc + XeLaTeX) and for building it locally.
 
 ## Reporting errors and suggesting improvements
 
@@ -154,7 +156,7 @@ For uses not covered by the licence — translations, excerpts for training mate
 
 ## Citing this book
 
-> Zaouam, S. (2026). *OpenStack, the Day After Tomorrow: Operating Mission-Critical OpenStack Platforms* (v1.0). https://github.com/soufian-zaouam/openstack-the-day-after-tomorrow
+> Zaouam, S. (2026). *OpenStack, the Day After Tomorrow: Operating Mission-Critical OpenStack Platforms* (v1.1). https://github.com/soufian-zaouam/openstack-the-day-after-tomorrow
 
 A machine-readable citation is provided in [CITATION.cff](CITATION.cff).
 

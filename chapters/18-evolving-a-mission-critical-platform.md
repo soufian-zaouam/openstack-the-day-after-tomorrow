@@ -21,7 +21,7 @@ When several evolution paths remain viable after the gates, a weighted scoring m
 The platform runs a series that has left maintenance and is two SLURP releases behind the current one. It carries about a dozen locally applied patches, three of which touch Nova scheduling and were written by an engineer who has since left. Control-plane recovery has been demonstrated once, two years ago, by that same engineer. The team has shrunk from six to four in the past year. A security advisory affects the running series, the upstream fix exists only for maintained series, and a backport is possible but untested. Three options survive the gates: an *immediate* campaign that performs both SLURP hops in one maintenance programme over a quarter; a *progressive* path that performs the first hop, stabilizes and rebuilds recovery capability, and performs the second hop six months later; and a *postponement* that spends the next two quarters removing the local patches and rebuilding recovery before any upgrade, carrying the security backport meanwhile. The postponement passes the security gate only because a tested backport is credible; without it, the option would be rejected before scoring.
 
 | Dimension (weight) | Immediate: both hops in one quarter | Progressive: one hop, stabilize, second hop | Postpone: reduce debt first, upgrade later |
-| --- | :---: | :---: | :---: |
+| ------------------------ | :----------: | :----------: | :----------: |
 | Business value or risk reduction (25 %) | 5 | 4 | 2 |
 | Control improvement (25 %) | 4 | 4 | 3 |
 | Transition risk (20 %) | 1 | 3 | 4 |

@@ -17,7 +17,7 @@ Architects evaluate complexity through diagrams. Operators experience it through
 The presence of a customization or workaround does not determine its risk. A practical assessment asks what capability depends on it, how critical that capability is, who can operate and recover it, what happens if it fails, and whether it makes production changes or upgrades harder. The cost of carrying it matters too: a workaround that repeatedly consumes engineering time, complicates investigation or prevents the platform from following upstream has a growing operational cost. The decision can then be one of four: keep it, reduce it, remove it, or schedule its removal for a defined lifecycle event.
 
 | Situation | Operational consequence | Typical decision |
-| --- | --- | --- |
+| -------------------- | ---------------- | ---------------- |
 | Low business impact, well understood, no significant lifecycle impact | Limited exposure | Keep and document |
 | Moderate impact, stable workaround, recurring operational effort | Consumes capacity | Plan simplification |
 | Critical capability, recovery depends on one person | High organizational risk | Prioritize removal or redundancy |

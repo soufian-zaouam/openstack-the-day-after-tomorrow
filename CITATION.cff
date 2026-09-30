@@ -5,8 +5,8 @@ title: "OpenStack, the Day After Tomorrow: Operating Mission-Critical OpenStack 
 authors:
   - family-names: Zaouam
     given-names: Soufian
-version: "1.0"
-date-released: 2026-09-13
+version: "1.1"
+date-released: 2026-09-30
 url: "https://github.com/soufian-zaouam/openstack-the-day-after-tomorrow"
 license: CC-BY-NC-ND-4.0
 keywords:

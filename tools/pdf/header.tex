@@ -1,0 +1,103 @@
+% ---------------------------------------------------------------------------
+% Book layout for "OpenStack, the Day After Tomorrow"
+% Loaded by pandoc (header-includes) — XeLaTeX only.
+% ---------------------------------------------------------------------------
+
+% ---- Page geometry: 17 x 24 cm, same as the original edition ---------------
+\usepackage[paperwidth=17cm,paperheight=24cm,
+            left=2.1cm,right=2.1cm,top=2.5cm,bottom=2.4cm,
+            headheight=14pt,headsep=0.7cm,footskip=1cm]{geometry}
+
+% ---- Fonts ------------------------------------------------------------------
+\setmainfont{TeX Gyre Pagella}
+\setsansfont{TeX Gyre Heros}
+\setmonofont{DejaVu Sans Mono}[Scale=0.82]
+
+% ---- Colours ----------------------------------------------------------------
+\usepackage{xcolor}
+\definecolor{boxgray}{gray}{0.96}
+\definecolor{boxgrayframe}{gray}{0.55}
+\definecolor{boxdarkframe}{gray}{0.30}
+\definecolor{boxblue}{rgb}{0.97,0.97,1.0}
+\definecolor{boxblueframe}{rgb}{0.55,0.55,0.685}
+
+% ---- Headings ---------------------------------------------------------------
+\usepackage{titlesec}
+\setcounter{secnumdepth}{0}                       % chapters numbered, sections not
+\titleformat{\part}[display]
+  {\centering\sffamily\bfseries}
+  {\Large Part \thepart}{1.5em}{\huge}
+\titleformat{\chapter}[display]
+  {\sffamily\bfseries\raggedright}
+  {\Large\chaptertitlename\ \thechapter}{0.6em}{\huge}
+\titlespacing*{\chapter}{0pt}{30pt}{40pt}
+\titleformat{\section}
+  {\sffamily\bfseries\large\raggedright}{}{0em}{}
+\titlespacing*{\section}{0pt}{14pt plus 4pt minus 2pt}{6pt plus 2pt}
+\titleformat{\subsection}
+  {\sffamily\bfseries}{}{0em}{}
+
+% ---- Running headers and footers -------------------------------------------
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\chaptermark}[1]{\markboth{#1}{#1}}
+\renewcommand{\sectionmark}[1]{\markright{#1}}
+\fancyhead[LE]{\small\sffamily\nouppercase{\leftmark}}
+\fancyhead[RO]{\small\sffamily\nouppercase{\rightmark}}
+\fancyfoot[C]{\small\thepage}
+\renewcommand{\headrulewidth}{0.2pt}
+\fancypagestyle{plain}{\fancyhf{}\fancyfoot[C]{\small\thepage}
+  \renewcommand{\headrulewidth}{0pt}}
+
+% ---- Paragraphs, lists, tables ---------------------------------------------
+\raggedbottom
+\usepackage{enumitem}
+\setlist{nosep,itemsep=2pt,topsep=4pt}
+\usepackage{etoolbox}
+\AtBeginEnvironment{longtable}{\small\renewcommand{\arraystretch}{1.25}}
+\setlength{\LTpre}{8pt}\setlength{\LTpost}{8pt}
+\clubpenalty=10000 \widowpenalty=10000
+
+% ---- Boxed passages ---------------------------------------------------------
+\usepackage[skins,breakable]{tcolorbox}
+\tcbset{bookbox/.style={
+  breakable,enhanced,boxrule=0.5pt,arc=1pt,
+  left=6pt,right=6pt,top=5pt,bottom=5pt,
+  before skip=8pt plus 2pt,after skip=8pt plus 2pt,
+  fontupper=\small}}
+\newtcolorbox{technote}{bookbox,colback=boxgray,colframe=boxgrayframe}
+\newtcolorbox{principle}{bookbox,colback=white,colframe=boxdarkframe}
+\newtcolorbox{fromfield}{bookbox,colback=boxblue,colframe=boxblueframe}
+
+% ---- Figures ----------------------------------------------------------------
+\usepackage{caption}
+\captionsetup{font=small,labelfont=bf,justification=justified,singlelinecheck=false}
+\usepackage{float}
+\floatplacement{figure}{htbp}
+
+% ---- PDF bookmarks down to sections (hyperref is loaded after this file) ----
+\PassOptionsToPackage{bookmarksdepth=2,bookmarksopen=true,bookmarksopenlevel=1}{hyperref}
+
+% ---- Title page and colophon ------------------------------------------------
+% \bookversion and \bookdate are written by build.sh into build/version.tex
+\IfFileExists{build/version.tex}{\input{build/version.tex}}{%
+  \providecommand{\bookversion}{development build}%
+  \providecommand{\bookdate}{\today}}
+
+\newcommand{\booktitlepage}{%
+  \begin{titlepage}
+    \thispagestyle{empty}
+    \vspace*{4.5cm}
+    {\sffamily\bfseries\fontsize{26}{32}\selectfont OpenStack,\\ the Day After Tomorrow\par}
+    \vspace{1.2cm}
+    {\sffamily\fontsize{13.4}{17}\selectfont Operating Mission-Critical OpenStack Platforms\par}
+    \vfill
+    {\sffamily\fontsize{10.7}{13}\selectfont Soufian Zaouam\par}
+    \vspace{2cm}
+  \end{titlepage}}
+
+\newcommand{\bookcolophon}{%
+  \clearpage\thispagestyle{empty}
+  {\small\input{build/colophon.tex}}
+  \clearpage}
