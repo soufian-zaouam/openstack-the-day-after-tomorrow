@@ -1,5 +1,6 @@
-# Guard rail: this repository distributes the PDF through GitHub Releases only.
-# Manuscript sources, layouts and build artefacts must never be committed here.
+# Guard rail: the book is published as Markdown (chapters/, appendices/) and as a PDF
+# distributed through GitHub Releases only. Layout sources, generated files and build
+# artefacts must never be committed here.
 *.docx
 *.doc
 *.odt
@@ -11,7 +12,5 @@
 *.pdf
 drafts/
 build/
-src/
-manuscript/
 .DS_Store
 Thumbs.db
