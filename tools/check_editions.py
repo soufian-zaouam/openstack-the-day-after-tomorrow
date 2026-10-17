@@ -88,8 +88,8 @@ EDITIONS = {
         "part_line": r"^\*الجزء .+ — ",
         "appendices_line": r"^\*الملاحق\*",
         "caption": r"^\*الشكل \d+\.\d+",
-        "chapter_ref": r"(?:الفصل|الفصلين|الفصول|الفصلَين)\s+(\d+)",
-        "appendix_ref": r"(?:الملحق|الملحقين|الملاحق|الملحقَين)\s+(أ|ب|ج|د|هـ|ه|و)(?![ء-ي])",
+        "chapter_ref": r"(?:الفصل|الفصلين|الفصلان|الفصول|الفصلَين|الفصلَان)\s+(\d+)",
+        "appendix_ref": r"(?:الملحق|الملحقين|الملحقان|الملاحق|الملحقَين|الملحقَان)\s+(أ|ب|ج|د|هـ|ه|و)(?![ء-ي])",
         "allowed_extra": {                # deliberate differences, see ar/STYLE.md
             "00-front-matter.md": {"paragraphs": 1},   # the note that presents the Arabic edition
         },
