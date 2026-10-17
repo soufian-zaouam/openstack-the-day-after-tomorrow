@@ -1,0 +1,53 @@
+name: Translate a chapter
+description: Claim a chapter to translate, review or update, so that nobody else works on it at the same time.
+title: "[ar] Chapter N — "
+labels: ["translation", "lang:ar"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you! Before claiming, check [TRANSLATIONS.md](https://github.com/soufian-zaouam/openstack-the-day-after-tomorrow/blob/main/TRANSLATIONS.md) and the [open translation issues](https://github.com/soufian-zaouam/openstack-the-day-after-tomorrow/issues?q=is%3Aissue+is%3Aopen+label%3Atranslation) so that the file is free, and read the guide of the language (`ar/STYLE.md`) and [CONTRIBUTING.md](https://github.com/soufian-zaouam/openstack-the-day-after-tomorrow/blob/main/CONTRIBUTING.md). This issue is your claim: keep it updated, and say so here if you have to stop, so that someone else can take over.
+  - type: dropdown
+    id: language
+    attributes:
+      label: Language
+      options:
+        - Arabic (ar)
+        - Other (say which in the description)
+    validations:
+      required: true
+  - type: input
+    id: file
+    attributes:
+      label: File
+      description: The English source file, which gives the name of the translated file.
+      placeholder: chapters/04-the-control-loop.md
+    validations:
+      required: true
+  - type: dropdown
+    id: work
+    attributes:
+      label: What you will do
+      options:
+        - Translate the file (first translation)
+        - Review a merged draft in depth
+        - Update the translation after a change in the English text
+    validations:
+      required: true
+  - type: input
+    id: eta
+    attributes:
+      label: When you expect to open the pull request
+      placeholder: "in about two weeks"
+  - type: textarea
+    id: notes
+    attributes:
+      label: Notes
+      description: Questions about the text, terms you expect to be difficult, anything the reviewers should know.
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: Before you start
+      options:
+        - label: I have read the guide of the language (STYLE.md) and CONTRIBUTING.md, and I agree that my contribution is published as part of the book under CC BY-NC-ND 4.0 with the author as licensor.
+          required: true

@@ -96,11 +96,14 @@ openstack-the-day-after-tomorrow/
 ├── fr/
 │   ├── README.md          cette page : présentation et sommaire en français
 │   ├── STYLE.md           méthode, conventions et terminologie de l’édition française
+│   ├── CONTRIBUTING.md    comment contribuer (résumé en français du guide anglais)
 │   ├── chapters/          pages liminaires, introduction, chapitres 1–20 et conclusion
 │   └── appendices/        annexes A–F et références
-├── tools/pdf/             génération des PDF (pandoc + XeLaTeX), les deux éditions
-├── tools/figures/         traduction des figures (tables de libellés dans tools/figures/fr/)
-├── tools/check_editions.py  vérification de la parité entre les deux éditions
+├── ar/                    l’édition arabe, même organisation, traduite par la communauté
+├── TRANSLATIONS.md        état de chaque chapitre dans chaque langue
+├── tools/pdf/             génération des PDF (pandoc + XeLaTeX / LuaLaTeX), toutes les éditions
+├── tools/figures/         traduction des figures (tables de libellés dans tools/figures/fr/ et ar/)
+├── tools/check_editions.py  vérification de la parité des éditions traduites avec l’original
 └── tools/fr_typography.py   application de la typographie française
 ```
 

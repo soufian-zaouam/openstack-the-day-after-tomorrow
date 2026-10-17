@@ -3,3 +3,9 @@ contact_links:
   - name: Download the book
     url: https://github.com/soufian-zaouam/openstack-the-day-after-tomorrow/releases/latest
     about: The current PDF is always available from the latest release.
+  - name: State of the translations
+    url: https://github.com/soufian-zaouam/openstack-the-day-after-tomorrow/blob/main/TRANSLATIONS.md
+    about: Which chapters are translated, under review or free to take, in each language.
+  - name: How to contribute
+    url: https://github.com/soufian-zaouam/openstack-the-day-after-tomorrow/blob/main/CONTRIBUTING.md
+    about: Translating, reviewing, correcting - with or without Git.

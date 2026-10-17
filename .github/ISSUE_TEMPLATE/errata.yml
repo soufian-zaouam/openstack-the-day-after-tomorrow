@@ -11,6 +11,16 @@ body:
       placeholder: v1.0
     validations:
       required: true
+  - type: dropdown
+    id: edition
+    attributes:
+      label: Edition
+      options:
+        - English
+        - French (fr)
+        - Arabic (ar)
+    validations:
+      required: true
   - type: input
     id: location
     attributes:
@@ -28,6 +38,7 @@ body:
         - Typo / wording
         - Unclear or ambiguous passage
         - Broken or wrong reference
+        - Translation problem (prefer the "Translation feedback" template)
     validations:
       required: true
   - type: textarea

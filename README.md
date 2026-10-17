@@ -8,9 +8,12 @@
 [![Version](https://img.shields.io/github/v/release/soufian-zaouam/openstack-the-day-after-tomorrow?label=version&style=for-the-badge)](https://github.com/soufian-zaouam/openstack-the-day-after-tomorrow/releases)
 [![License: CC BY-NC-ND 4.0](https://img.shields.io/badge/License-CC%20BY--NC--ND%204.0-lightgrey?style=for-the-badge)](LICENSE)
 
-This is the author's official repository for the book *OpenStack, the Day After Tomorrow*. It is the reference place to download the current edition, follow new versions, and report errors.
+This is the author's official repository for the book *OpenStack, the Day After Tomorrow*. It is the reference place to download the current edition, follow new versions, report errors, and **take part in translating, reviewing and correcting the book**: the repository is an open editorial project of the OpenStack community, not only a published book.
 
-**Édition française :** le livre existe aussi en français, *OpenStack, après-demain*, maintenu dans ce même dépôt chapitre par chapitre. Voir [fr/README.md](fr/README.md).
+**Languages.** The English text is the reference edition. The book also exists in:
+
+- **Français** — *OpenStack, après-demain*, the author's own translation, complete: [fr/README.md](fr/README.md).
+- **العربية** — *OpenStack، بعد غد*, a community translation in progress, supervised by the author: [ar/README.md](ar/README.md). Chapters are being translated one by one; see [TRANSLATIONS.md](TRANSLATIONS.md) for the state of each one and [CONTRIBUTING.md](CONTRIBUTING.md) to help.
 
 The book is published freely, as a **PDF** (see [Download](#download)) and as **Markdown, one file per chapter, readable directly on GitHub** (see [Read the book on GitHub](#read-the-book-on-github)). It is an **independent, personal contribution to the OpenStack community**. It is not a publication of the OpenStack Foundation (OpenInfra Foundation), of a publisher, or of any employer or client, and it does not describe any specific organisation's platform.
 
@@ -94,20 +97,24 @@ openstack-the-day-after-tomorrow/
 ├── README.md              this page: presentation and table of contents
 ├── chapters/              front matter, introduction, chapters 1–20 and the conclusion (one Markdown file each)
 ├── appendices/            appendices A–F and the references
-├── assets/figures/        the book's figures (SVG); assets/figures/fr/ holds the French-labelled versions
+├── assets/figures/        the book's figures (SVG); fr/ and ar/ hold the translated versions
 ├── fr/                    the French edition: README (table of contents), STYLE.md (method and terminology),
-│                          chapters/ and appendices/ mirroring the English files one for one
-├── tools/pdf/             how the PDFs are generated from the Markdown (pandoc + XeLaTeX), both editions
-├── tools/figures/         how the French figures are produced from the English ones
-├── tools/check_editions.py  checks that the two editions stay in step (structure, links, typography)
-├── .github/workflows/     build-book.yml: checks the editions, builds, verifies and releases the PDFs
+│                          CONTRIBUTING.md (summary in French), chapters/ and appendices/ mirroring the English files
+├── ar/                    the Arabic edition, same layout (README, STYLE.md with the glossary, CONTRIBUTING.md,
+│                          chapters/, appendices/), being translated by the community
+├── tools/pdf/             how the PDFs are generated from the Markdown (pandoc + XeLaTeX / LuaLaTeX), all editions
+├── tools/figures/         how the translated figures are produced from the English ones
+├── tools/check_editions.py  checks that the translated editions stay in step with the original
+├── .github/               issue and pull request templates; workflows/build-book.yml checks, builds and releases the PDFs
+├── TRANSLATIONS.md        state of every chapter in every language
+├── CONTRIBUTORS.md        translators, reviewers and contributors, by edition
 ├── CHANGELOG.md           published versions
-├── CONTRIBUTING.md        how to report errata and suggestions
+├── CONTRIBUTING.md        how to translate, review, correct, report (reference; summaries in fr/ and ar/)
 ├── CITATION.cff           machine-readable citation
 └── LICENSE                CC BY-NC-ND 4.0
 ```
 
-The English text is the reference edition. Every file of the French edition has the same chapter number or appendix letter as its English counterpart, so that a correction can be carried from one to the other; the mapping is listed in [`fr/STYLE.md`](fr/STYLE.md).
+The English text is the reference edition. Every file of a translated edition has the same chapter number or appendix letter as its English counterpart (the Arabic files even keep the English file names), so that a correction can be carried from one to the other; the mappings are listed in [`fr/STYLE.md`](fr/STYLE.md) and [`ar/STYLE.md`](ar/STYLE.md).
 
 Throughout the text, three kinds of boxed passage from the PDF are rendered as quotations: **Technical note** (verifiable OpenStack facts, with a reference), **Principle** (an operating rule the book recommends) and **From the field** (an operational situation and the decision it required).
 
@@ -143,16 +150,21 @@ Deployment is the beginning of the operational journey, not the end. The hard-wo
 
 The PDF is distributed exclusively through the [Releases](https://github.com/soufian-zaouam/openstack-the-day-after-tomorrow/releases) page of this repository. Each version is tagged, dated and accompanied by release notes. Previous versions remain available. See [CHANGELOG.md](CHANGELOG.md) for the history of changes.
 
-The PDF is **generated automatically from the Markdown sources** of this repository ([`chapters/`](chapters/), [`appendices/`](appendices/), [`assets/figures/`](assets/figures/)) by a GitHub Actions workflow that rebuilds and verifies it on every change; a version tag publishes it as a release, together with the PDF of the [French edition](fr/README.md) (`openstack-the-day-after-tomorrow-fr-vX.Y.pdf`). See [`tools/pdf/README.md`](tools/pdf/README.md) for the toolchain (pandoc + XeLaTeX) and for building it locally.
+The PDF is **generated automatically from the Markdown sources** of this repository ([`chapters/`](chapters/), [`appendices/`](appendices/), [`assets/figures/`](assets/figures/)) by a GitHub Actions workflow that rebuilds and verifies it on every change; a version tag publishes it as a release, together with the PDF of the [French edition](fr/README.md) (`openstack-the-day-after-tomorrow-fr-vX.Y.pdf`) and, once it is complete, of the [Arabic edition](ar/README.md) (`openstack-the-day-after-tomorrow-ar-vX.Y.pdf`; until then the workflow keeps a preview of the translated chapters as an artifact). See [`tools/pdf/README.md`](tools/pdf/README.md) for the toolchain (pandoc + XeLaTeX / LuaLaTeX) and for building it locally.
 
-## Reporting errors and suggesting improvements
+## Contributing: translate, review, correct
 
-Corrections, technical objections and suggestions are welcome and are the main way readers can contribute.
+The book is published openly so that the people who operate these platforms can discuss, correct and improve it, and so that its ideas can travel in several languages. Contributions do not need to come from OpenStack experts: a careful reader of Arabic or French can review a chapter; an operator can check a technical note; anyone can report a typo.
 
-- **Found a mistake?** (technical error, typo, unclear passage, broken reference) → [open an *Errata* issue](https://github.com/soufian-zaouam/openstack-the-day-after-tomorrow/issues/new?template=errata.yml)
+- **Found a mistake?** (technical error, typo, unclear passage, broken reference, in any edition) → [open an *Errata* issue](https://github.com/soufian-zaouam/openstack-the-day-after-tomorrow/issues/new?template=errata.yml)
 - **Have a suggestion or a question about the content?** → [open a *Suggestion* issue](https://github.com/soufian-zaouam/openstack-the-day-after-tomorrow/issues/new?template=suggestion.yml)
+- **Want to translate a chapter into Arabic?** → pick a free chapter in [TRANSLATIONS.md](TRANSLATIONS.md), [claim it](https://github.com/soufian-zaouam/openstack-the-day-after-tomorrow/issues/new?template=translate-chapter.yml), follow [`ar/STYLE.md`](ar/STYLE.md), open a pull request
+- **Want to review a translation?** → comment on an [open translation pull request](https://github.com/soufian-zaouam/openstack-the-day-after-tomorrow/pulls?q=is%3Apr+is%3Aopen+label%3Atranslation); no Git needed
+- **A term seems wrong?** → [open a *Terminology* issue](https://github.com/soufian-zaouam/openstack-the-day-after-tomorrow/issues/new?template=terminology.yml); the glossaries are in `ar/STYLE.md` and `fr/STYLE.md`
 
-Please mention the book version and the page (PDF) or the chapter file and section (Markdown) concerned. Confirmed corrections are listed in the [changelog](CHANGELOG.md) and integrated into the next version. See [CONTRIBUTING.md](CONTRIBUTING.md) for details.
+How it works, step by step, with or without Git, and the editorial rules that keep the quality of the book: [CONTRIBUTING.md](CONTRIBUTING.md) (also summarised in [French](fr/CONTRIBUTING.md) and [Arabic](ar/CONTRIBUTING.md)). The state of every chapter in every language: [TRANSLATIONS.md](TRANSLATIONS.md). The people who contributed: [CONTRIBUTORS.md](CONTRIBUTORS.md).
+
+Please mention the book version, the edition and the page (PDF) or the chapter file and section (Markdown) concerned. Confirmed corrections are listed in the [changelog](CHANGELOG.md) and integrated into the next version.
 
 ## License
 
@@ -160,7 +172,7 @@ Copyright © 2026 Soufian Zaouam.
 
 The book is released under the [Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International](https://creativecommons.org/licenses/by-nc-nd/4.0/) licence (CC BY-NC-ND 4.0). You are free to read it, download it, share it and redistribute it, in any medium, as long as you credit the author, do not use it commercially and do not distribute modified versions. See [LICENSE](LICENSE).
 
-For uses not covered by the licence — translations into other languages, excerpts for training material, inclusion in a commercial offering — please open an issue or contact the author. Reasonable requests are usually welcome. The French edition in [`fr/`](fr/) is the author's own and is covered by the same licence.
+**What this means for translations.** A translation is a modified version of the book, which the licence does not allow anyone to publish on their own. The translations of the book exist only in this repository: the French edition in [`fr/`](fr/) is the author's own, and the Arabic edition in [`ar/`](ar/) is translated by contributors whose work is integrated by the author and published under the same licence, with their names in [CONTRIBUTORS.md](CONTRIBUTORS.md). The terms under which contributions are accepted are in [CONTRIBUTING.md](CONTRIBUTING.md#before-you-start-the-licence). For uses not covered by the licence — a separate edition, excerpts for training material, inclusion in a commercial offering — please open an issue or contact the author. Reasonable requests are usually welcome.
 
 ## Citing this book
 

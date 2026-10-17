@@ -1,0 +1,47 @@
+name: Terminology
+description: Propose a translation for a term, or contest one in the glossary of a language.
+title: "[terminology][ar] "
+labels: ["terminology", "lang:ar"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        The glossary of each language (`ar/STYLE.md`, `fr/STYLE.md`) is the reference. A term is adopted when the participants agree or, after two weeks without consensus, when the author decides; it is then added to the glossary and applied to the chapters already translated.
+  - type: dropdown
+    id: language
+    attributes:
+      label: Language
+      options:
+        - Arabic (ar)
+        - French (fr)
+    validations:
+      required: true
+  - type: input
+    id: term
+    attributes:
+      label: English term
+      placeholder: blast radius
+    validations:
+      required: true
+  - type: input
+    id: current
+    attributes:
+      label: Current translation (if any, as in the glossary or in the chapters)
+  - type: input
+    id: proposed
+    attributes:
+      label: Proposed translation
+    validations:
+      required: true
+  - type: textarea
+    id: rationale
+    attributes:
+      label: Why
+      description: Usage in the field, in official documentation or in other translated works; ambiguities avoided; how it fits the related terms of the glossary.
+    validations:
+      required: true
+  - type: input
+    id: chapters
+    attributes:
+      label: Chapters affected
+      placeholder: "1, 9, 20, appendix F"

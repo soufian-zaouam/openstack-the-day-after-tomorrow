@@ -1,0 +1,51 @@
+name: Translation feedback
+description: Report a problem in a translated edition - inaccurate meaning, terminology, grammar, style or right-to-left display.
+title: "[ar] "
+labels: ["translation", "lang:ar", "errata"]
+body:
+  - type: dropdown
+    id: language
+    attributes:
+      label: Edition
+      options:
+        - Arabic (ar)
+        - French (fr)
+    validations:
+      required: true
+  - type: input
+    id: location
+    attributes:
+      label: File and section (or PDF page)
+      placeholder: "ar/chapters/04-the-control-loop.md, section 'Where the loop breaks'"
+    validations:
+      required: true
+  - type: dropdown
+    id: kind
+    attributes:
+      label: Kind of problem
+      options:
+        - The translation does not say what the English says
+        - Terminology (inconsistent with the glossary, or the glossary term is wrong)
+        - Grammar, spelling or style
+        - Right-to-left display or formatting
+        - Figure label
+        - Other
+    validations:
+      required: true
+  - type: textarea
+    id: description
+    attributes:
+      label: What is wrong?
+      description: Quote the translated passage and, if useful, the English original.
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed wording (optional)
+  - type: checkboxes
+    id: credit
+    attributes:
+      label: Credit
+      options:
+        - label: You may credit me (GitHub username) in CONTRIBUTORS.md and the release notes if this correction is integrated.

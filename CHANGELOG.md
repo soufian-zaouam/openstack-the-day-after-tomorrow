@@ -11,6 +11,13 @@ Versioning scheme:
 
 ## [Unreleased]
 
+The repository becomes an open editorial project: the book can be translated, reviewed and corrected by the OpenStack community, starting with an Arabic edition.
+
+- Arabic edition, *OpenStack، بعد غد*, started under `ar/` with the same layout as the French one: `ar/STYLE.md` (method, structural markers, right-to-left conventions and the terminology glossary), `ar/README.md`, `ar/CONTRIBUTING.md`, and the chapters translated so far, one Markdown file per chapter with the English file names. Each file is wrapped in `<div dir="rtl">` so that GitHub displays it right-to-left. The state of every chapter is in `TRANSLATIONS.md`.
+- The Arabic PDF, `openstack-the-day-after-tomorrow-ar.pdf`, built by the same toolchain with LuaLaTeX (babel `bidi=basic`, Amiri and Noto Kufi Arabic), verified by the same checks; while the edition is in progress the workflow builds a preview from the chapters that exist and releases the PDF only once the edition is complete. The Arabic figures are generated from the English ones, mirrored so that the flows read right-to-left.
+- Community process: `CONTRIBUTING.md` rewritten (what the licence allows, how to translate, review and correct a chapter with or without Git, editorial rules, terminology decisions, who decides), summarised in French (`fr/CONTRIBUTING.md`) and Arabic (`ar/CONTRIBUTING.md`); `TRANSLATIONS.md` tracks the chapters; `CONTRIBUTORS.md` credits the translators and reviewers; issue templates to claim a chapter, report a translation problem and discuss a term; a pull request template; the *Errata* template asks for the edition.
+- Tooling: `tools/check_editions.py` checks every translated edition (strictly for French, progressively for Arabic), `tools/pdf/build.sh` and `verify_pdf.py` know the Arabic edition and editions in progress, the Lua filter recognises the Arabic markers and numbers chapters from their headings, `tools/figures/translate_figure.py` writes right-to-left and mirrored figures.
+
 French edition of the book, *OpenStack, après-demain : exploiter des plateformes OpenStack critiques*, maintained in this repository alongside the original. Same text, same structure, same version number.
 
 - The full French text under `fr/` (`fr/chapters/`, `fr/appendices/`), one Markdown file per chapter, with the same chapter numbers and appendix letters as the English files, a French table of contents (`fr/README.md`) and an editorial guide fixing the method and the terminology (`fr/STYLE.md`).
