@@ -1,0 +1,42 @@
+% ---------------------------------------------------------------------------
+% Arabic edition: fonts, direction and labels, loaded after header.tex.
+%
+% The Arabic edition is typeset by LuaLaTeX, not XeLaTeX: pandoc declares the
+% language with \usepackage[bidi=basic]{babel} and \babelprovide[main,import]
+% {arabic}, and babel's "basic" bidi algorithm (LuaTeX only) lays out the
+% mixed Arabic/Latin text of the book (service names, commands, numbers,
+% URLs) without any direction markup in the Markdown sources. The <div
+% dir="rtl"> wrappers of the Arabic files, which GitHub needs, are removed by
+% the Lua filter: the whole document is right-to-left.
+%
+% Latin letters switch to the fonts of the original edition (onchar=ids
+% fonts); glyphs that Amiri lacks (arrows, bullets, some punctuation) come
+% from a fallback font so that the build never leaves a missing character.
+% ---------------------------------------------------------------------------
+\babelprovide[import,onchar=ids fonts]{english}
+\directlua{luaotfload.add_fallback("bookfallback",
+  {"DejaVu Sans:mode=node;", "TeX Gyre Pagella:mode=node;"})}
+\babelfont{rm}[Scale=1.1,RawFeature={fallback=bookfallback}]{Amiri}
+\babelfont{sf}[RawFeature={fallback=bookfallback}]{Noto Kufi Arabic}
+\babelfont{tt}[Scale=0.82]{DejaVu Sans Mono}
+\babelfont[english]{rm}{TeX Gyre Pagella}
+\babelfont[english]{sf}{TeX Gyre Heros}
+\babelfont[english]{tt}[Scale=0.82]{DejaVu Sans Mono}
+
+% ---- Labels (the Markdown sources use the same words) -----------------------
+\AtBeginDocument{%
+  \renewcommand{\partname}{الجزء}%
+  \renewcommand{\chaptername}{الفصل}%
+  \renewcommand{\appendixname}{الملحق}%
+  \renewcommand{\figurename}{الشكل}%
+  \renewcommand{\tablename}{الجدول}%
+  % recto pages of a right-to-left book are on the left of the spread
+  \fancyhead{}%
+  \fancyhead[RE]{\small\sffamily\nouppercase{\leftmark}}%
+  \fancyhead[LO]{\small\sffamily\nouppercase{\rightmark}}%
+}
+
+% ---- Appendices are lettered with the abjad sequence (أ ب ج د هـ و) ----------
+% The filter calls \bookappendixnumbering right after \appendix when it exists.
+\newcommand{\bookabjad}[1]{\ifcase\value{#1}\or أ\or ب\or ج\or د\or هـ\or و\else\Alph{#1}\fi}
+\newcommand{\bookappendixnumbering}{\renewcommand{\thechapter}{\bookabjad{chapter}}}

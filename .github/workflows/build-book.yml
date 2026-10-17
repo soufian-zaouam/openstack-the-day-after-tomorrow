@@ -1,11 +1,14 @@
 name: Build the PDF edition
 
 # Every push to main (and every pull request) rebuilds the PDF of each edition
-# (English: chapters/, appendices/; French: fr/) from the Markdown sources and
-# verifies it, after checking that the two editions are in step. The PDFs are
-# kept as workflow artifacts. A version tag (v1.1, v2.0, ...) additionally
-# publishes both PDFs as a GitHub Release, which is the official distribution
-# channel of the book. The workflow can also be run by hand, optionally
+# (English: chapters/, appendices/; French: fr/; Arabic: ar/) from the Markdown
+# sources and verifies it, after checking that the translated editions are in
+# step with the original. The PDFs are kept as workflow artifacts. A version
+# tag (v1.1, v2.0, ...) additionally publishes the PDFs as a GitHub Release,
+# which is the official distribution channel of the book. An edition still
+# being translated (the Arabic one, see TRANSLATIONS.md) is built from the
+# chapters that exist, as a preview for the reviewers, and is released only
+# once it is complete. The workflow can also be run by hand, optionally
 # creating a release.
 
 on:
@@ -39,14 +42,21 @@ jobs:
     steps:
       - name: Check out the sources
         uses: actions/checkout@v4
-      - name: Compare the French edition with the original
+      - name: Compare the translated editions with the original
         run: python3 tools/check_editions.py
-      - name: Check that the French figures are up to date with their maps
+      - name: Check that the translated figures are up to date with their maps
         run: |
-          for svg in assets/figures/*.svg; do
-            name="$(basename "$svg")"
-            python3 tools/figures/translate_figure.py "$svg" "tools/figures/fr/${name%.svg}.json" "/tmp/$name"
-            cmp "/tmp/$name" "assets/figures/fr/$name" || { echo "assets/figures/fr/$name differs from what tools/figures/fr/${name%.svg}.json produces" >&2; exit 1; }
+          for lang in fr ar; do
+            for svg in assets/figures/*.svg; do
+              name="$(basename "$svg")"
+              map="tools/figures/$lang/${name%.svg}.json"
+              if [[ ! -f "$map" ]]; then
+                [[ "$lang" == fr ]] && { echo "missing map $map" >&2; exit 1; }
+                continue   # an edition in progress may not have translated this figure yet
+              fi
+              python3 tools/figures/translate_figure.py "$svg" "$map" "/tmp/$lang-$name"
+              cmp "/tmp/$lang-$name" "assets/figures/$lang/$name" || { echo "assets/figures/$lang/$name differs from what $map produces" >&2; exit 1; }
+            done
           done
 
   build:
@@ -67,12 +77,15 @@ jobs:
           sudo apt-get update -q
           sudo DEBIAN_FRONTEND=noninteractive apt-get install -y -q --no-install-recommends \
             pandoc \
-            texlive-xetex texlive-latex-recommended texlive-latex-extra texlive-lang-french \
+            texlive-xetex texlive-luatex texlive-latex-recommended texlive-latex-extra \
+            texlive-lang-french texlive-lang-arabic \
             texlive-fonts-recommended fonts-texgyre lmodern fonts-dejavu-core fonts-liberation \
+            fonts-hosny-amiri fonts-noto-core \
             librsvg2-bin poppler-utils python3-pip
           pip3 install --quiet --break-system-packages pymupdf
           pandoc --version | head -n 1
           xelatex --version | head -n 1
+          lualatex --version | head -n 1
 
       - name: Work out the version to print on the copyright page
         id: version
@@ -105,6 +118,23 @@ jobs:
       - name: Verify the French PDF
         run: python3 tools/pdf/verify_pdf.py "build/${PDF_NAME}-fr.pdf" "build/${PDF_NAME}-fr.log"
 
+      - name: Build the Arabic PDF from the Markdown sources (the chapters translated so far)
+        run: bash tools/pdf/build.sh ar "${{ steps.version.outputs.version }}"
+
+      - name: Verify the Arabic PDF
+        run: python3 tools/pdf/verify_pdf.py "build/${PDF_NAME}-ar.pdf" "build/${PDF_NAME}-ar.log"
+
+      - name: Is the Arabic edition complete?
+        id: arabic
+        run: |
+          if [[ -s "build/${PDF_NAME}-ar.missing" ]]; then
+            echo "complete=false" >> "$GITHUB_OUTPUT"
+            echo "The Arabic edition is in progress: $(wc -l < "build/${PDF_NAME}-ar.missing") source(s) not yet translated (preview PDF only, not released)."
+          else
+            echo "complete=true" >> "$GITHUB_OUTPUT"
+            echo "The Arabic edition is complete."
+          fi
+
       - name: Render preview pages
         run: |
           mkdir -p build/preview
@@ -113,6 +143,7 @@ jobs:
             pdftoppm -r 60 -png -f 12 -l 13 "build/${PDF_NAME}${edition}.pdf" "build/preview/chapter-1${edition}"
             pdftoppm -r 60 -png -f 16 -l 17 "build/${PDF_NAME}${edition}.pdf" "build/preview/figure-1-1${edition}"
           done
+          pdftoppm -r 60 -png -f 1 -l 8 "build/${PDF_NAME}-ar.pdf" "build/preview/front-ar"
           ls build/preview
 
       - name: Name the PDFs after the version
@@ -122,8 +153,14 @@ jobs:
           suffix="${tag:-main-$(git rev-parse --short HEAD)}"
           cp "build/${PDF_NAME}.pdf" "build/${PDF_NAME}-${suffix}.pdf"
           cp "build/${PDF_NAME}-fr.pdf" "build/${PDF_NAME}-fr-${suffix}.pdf"
+          if [[ "${{ steps.arabic.outputs.complete }}" == "true" ]]; then
+            cp "build/${PDF_NAME}-ar.pdf" "build/${PDF_NAME}-ar-${suffix}.pdf"
+          else
+            cp "build/${PDF_NAME}-ar.pdf" "build/${PDF_NAME}-ar-preview-${suffix}.pdf"
+          fi
           echo "file=build/${PDF_NAME}-${suffix}.pdf" >> "$GITHUB_OUTPUT"
           echo "file_fr=build/${PDF_NAME}-fr-${suffix}.pdf" >> "$GITHUB_OUTPUT"
+          echo "file_ar=$(ls build/${PDF_NAME}-ar-*${suffix}.pdf)" >> "$GITHUB_OUTPUT"
 
       - name: Upload the PDFs as a workflow artifact
         uses: actions/upload-artifact@v4
@@ -132,6 +169,7 @@ jobs:
           path: |
             ${{ steps.artifact.outputs.file }}
             ${{ steps.artifact.outputs.file_fr }}
+            ${{ steps.artifact.outputs.file_ar }}
           if-no-files-found: error
           retention-days: 90
 
@@ -153,14 +191,20 @@ jobs:
           tag="${{ steps.version.outputs.release_tag }}"
           pages="$(pdfinfo "build/${PDF_NAME}.pdf" | awk '/^Pages/{print $2}')"
           pages_fr="$(pdfinfo "build/${PDF_NAME}-fr.pdf" | awk '/^Pages/{print $2}')"
+          pages_ar="$(pdfinfo "build/${PDF_NAME}-ar.pdf" | awk '/^Pages/{print $2}')"
           {
             echo "**OpenStack, the Day After Tomorrow — Operating Mission-Critical OpenStack Platforms**, ${tag}."
             echo
-            echo "Both PDFs were generated automatically by GitHub Actions from the Markdown sources of this repository"
-            echo "(commit ${GITHUB_SHA::7}) with pandoc and XeLaTeX, and verified before publication. Licence: CC BY-NC-ND 4.0."
+            echo "The PDFs were generated automatically by GitHub Actions from the Markdown sources of this repository"
+            echo "(commit ${GITHUB_SHA::7}) with pandoc, XeLaTeX and LuaLaTeX, and verified before publication. Licence: CC BY-NC-ND 4.0."
             echo
             echo "- \`${PDF_NAME}-${tag}.pdf\` — English edition, ${pages} pages."
             echo "- \`${PDF_NAME}-fr-${tag}.pdf\` — édition française, *OpenStack, après-demain*, ${pages_fr} pages."
+            if [[ "${{ steps.arabic.outputs.complete }}" == "true" ]]; then
+              echo "- \`${PDF_NAME}-ar-${tag}.pdf\` — الطبعة العربية، *OpenStack، بعد غد*، ${pages_ar} صفحة (community translation, see CONTRIBUTORS.md)."
+            else
+              echo "- The Arabic edition is being translated by the community (see TRANSLATIONS.md); it will be released with the PDFs once complete."
+            fi
             echo
             # the section of CHANGELOG.md for this version, when it exists
             awk -v tag="$tag" '
@@ -174,7 +218,8 @@ jobs:
             fi
             echo
             echo "Read the book online, chapter by chapter, in the [repository README](https://github.com/${GITHUB_REPOSITORY}#read-the-book-on-github),"
-            echo "or the French edition in [fr/README.md](https://github.com/${GITHUB_REPOSITORY}/blob/main/fr/README.md)."
+            echo "the French edition in [fr/README.md](https://github.com/${GITHUB_REPOSITORY}/blob/main/fr/README.md),"
+            echo "or the Arabic edition in [ar/README.md](https://github.com/${GITHUB_REPOSITORY}/blob/main/ar/README.md)."
           } > build/release-notes.md
           cat build/release-notes.md
 
@@ -189,6 +234,7 @@ jobs:
           files: |
             ${{ steps.artifact.outputs.file }}
             ${{ steps.artifact.outputs.file_fr }}
+            ${{ steps.arabic.outputs.complete == 'true' && steps.artifact.outputs.file_ar || '' }}
           fail_on_unmatched_files: true
           draft: false
           prerelease: false

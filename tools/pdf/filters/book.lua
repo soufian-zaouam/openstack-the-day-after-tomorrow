@@ -5,7 +5,9 @@
 --   * drops the navigation footers ("← Previous · Contents · Next →")
 --   * turns "*Part I — Title*" lines into \part{Title} (once per part) and
 --     inserts \mainmatter before Part I
---   * "# Chapter N — Title"  -> numbered chapter "Title"
+--   * "# Chapter N — Title"  -> numbered chapter "Title" (the counter is set
+--     from N, so that an edition built from part of its chapters keeps the
+--     numbering of the book)
 --     "# Appendix X — Title" -> lettered appendix (\appendix before the first)
 --     other level-1 headings -> unnumbered chapters listed in the contents
 --   * turns the Technical note / Principle / From the field quotations into
@@ -13,18 +15,21 @@
 --   * turns "![Figure X.Y](path)" + "*Figure X.Y: caption*" into a real
 --     figure with a caption (LaTeX numbers it X.Y by itself)
 --
--- The structural markers exist in two languages: English (the original
--- edition) and French (fr/, see fr/STYLE.md). The language is taken from the
--- "lang" metadata of the edition (tools/pdf/metadata*.yaml). The French
--- edition also writes narrow no-break spaces (U+202F) before high punctuation
--- and inside « »; they become \, in LaTeX because the heading font has no
--- glyph for them.
+-- The structural markers exist in three languages: English (the original
+-- edition), French (fr/, see fr/STYLE.md) and Arabic (ar/, see ar/STYLE.md).
+-- The language is taken from the "lang" metadata of the edition
+-- (tools/pdf/metadata*.yaml). The French edition also writes narrow no-break
+-- spaces (U+202F) before high punctuation and inside « »; they become \, in
+-- LaTeX because the heading font has no glyph for them. The Arabic files are
+-- wrapped in <div dir="rtl"> for GitHub; the filter unwraps those divs, since
+-- the whole Arabic document is right-to-left (see tools/pdf/header-ar.tex).
 
 local stringify = pandoc.utils.stringify
 
 local MARKERS = {
   en = {
     part = "^Part %u+ — ", chapter = "^Chapter %d+ — (.*)$", appendix = "^Appendix %u — (.*)$",
+    chapter_number = "^Chapter (%d+) — ",
     appendices = "Appendices", references = "^References",
     technote = "^Technical note", principle = "^Principle", fromfield = "^From the field",
     figure = "^Figure %d+%.%d+:", figure_rest = "^Figure %d+%.%d+:%s*(.*)$",
@@ -32,10 +37,19 @@ local MARKERS = {
   },
   fr = {
     part = "^Partie %u+ — ", chapter = "^Chapitre %d+ — (.*)$", appendix = "^Annexe %u — (.*)$",
+    chapter_number = "^Chapitre (%d+) — ",
     appendices = "Annexes", references = "^Références",
     technote = "^Note technique", principle = "^Principe", fromfield = "^Sur le terrain",
     figure = "^Figure %d+%.%d+[^:]*:", figure_rest = "^Figure %d+%.%d+[^:]*:%s*(.*)$",
     appendix_part = "Annexes",
+  },
+  ar = {
+    part = "^الجزء .- — ", chapter = "^الفصل %d+ — (.*)$", appendix = "^الملحق [^ ]+ — (.*)$",
+    chapter_number = "^الفصل (%d+) — ",
+    appendices = "الملاحق", references = "^المراجع",
+    technote = "^ملاحظة تقنية", principle = "^مبدأ", fromfield = "^من الميدان",
+    figure = "^الشكل %d+%.%d+:", figure_rest = "^الشكل %d+%.%d+:%s*(.*)$",
+    appendix_part = "الملاحق",
   },
 }
 local M = MARKERS.en
@@ -106,11 +120,25 @@ local function figure_from(img_block, cap_para)
   return fig
 end
 
+local function unwrap_direction_divs(blocks)
+  -- <div dir="rtl"> … </div> around a whole file (Arabic edition): keep the
+  -- content, drop the wrapper
+  local flat = pandoc.List()
+  for _, b in ipairs(blocks) do
+    if b.t == "Div" and b.attributes.dir then
+      flat:extend(unwrap_direction_divs(b.content))
+    else
+      flat:insert(b)
+    end
+  end
+  return flat
+end
+
 function Pandoc(doc)
   local lang = doc.meta.lang and stringify(doc.meta.lang) or "en"
   M = MARKERS[lang:sub(1, 2)] or MARKERS.en
   local out = pandoc.List()
-  local blocks = doc.blocks
+  local blocks = unwrap_direction_divs(doc.blocks)
   local i = 1
   while i <= #blocks do
     local b = blocks[i]
@@ -141,10 +169,12 @@ function Pandoc(doc)
       local chap = text:match(M.chapter)
       local app = text:match(M.appendix)
       if chap then
+        local n = text:match(M.chapter_number)
+        if n then out:insert(raw("\\setcounter{chapter}{" .. (tonumber(n) - 1) .. "}")) end
         out:insert(pandoc.Header(1, pandoc.read(chap, "markdown").blocks[1].content))
       elseif app then
         if not appendix_done then
-          out:insert(raw("\\appendix\n\\part*{" .. M.appendix_part .. "}"))
+          out:insert(raw("\\appendix\\ifdefined\\bookappendixnumbering\\bookappendixnumbering\\fi\n\\part*{" .. M.appendix_part .. "}"))
           appendix_done = true
         end
         out:insert(pandoc.Header(1, pandoc.read(app, "markdown").blocks[1].content))

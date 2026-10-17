@@ -1,0 +1,123 @@
+{
+  "font": "Noto Sans Arabic, Noto Kufi Arabic, Liberation Sans, Arial, sans-serif",
+  "direction": "rtl",
+  "mirror": true,
+  "sets": {
+    "0": {},
+    "1": {
+      "weight": "bold"
+    },
+    "2": {
+      "style": "italic"
+    },
+    "3": {}
+  },
+  "lines": {
+    "0": {
+      "text": "المستخدم",
+      "size": 5.9
+    },
+    "1": {
+      "text": "Keystone"
+    },
+    "2": {
+      "text": "يصادق"
+    },
+    "3": {
+      "text": "Nova API"
+    },
+    "4": {
+      "text": "يتحقّق ويسجّل",
+      "size": 5.7
+    },
+    "5": {
+      "text": "Conductor"
+    },
+    "6": {
+      "text": "يحدّد الخلية",
+      "size": 6.0
+    },
+    "7": {
+      "text": "Scheduler"
+    },
+    "8": {
+      "text": "يختار المضيف"
+    },
+    "9": {
+      "text": "Placement"
+    },
+    "10": {
+      "text": "المخزون والتخصيص"
+    },
+    "11": {
+      "text": "طلب البناء",
+      "anchor": "start"
+    },
+    "12": {
+      "text": "مضيف الحوسبة (nova-compute)"
+    },
+    "13": {
+      "text": "يشغّل المثيل عبر مشغّل المُشرف الافتراضي"
+    },
+    "14": {
+      "text": "Glance"
+    },
+    "15": {
+      "text": "الصورة"
+    },
+    "16": {
+      "text": "(أو Cinder: الحجم)"
+    },
+    "17": {
+      "text": "Neutron"
+    },
+    "18": {
+      "text": "ينشئ المنفذ ويربطه"
+    },
+    "19": {
+      "text": "الوكيل / متحكّم OVN"
+    },
+    "20": {
+      "text": "يوصّل المنفذ على المضيف"
+    },
+    "21": {
+      "text": "network-vif-plugged",
+      "anchor": "end",
+      "direction": "ltr"
+    },
+    "22": {
+      "text": "(أو vif_plugging_timeout)",
+      "anchor": "end"
+    },
+    "23": {
+      "text": "RabbitMQ — استدعاءات RPC داخل Nova"
+    },
+    "24": {
+      "text": "MariaDB Galera — قاعدة بيانات لكلّ خدمة"
+    },
+    "25": {
+      "text": "الأسهم المتّصلة بين الخدمات:",
+      "anchor": "start"
+    },
+    "26": {
+      "text": "استدعاءات REST عبر فهرس",
+      "anchor": "start"
+    },
+    "27": {
+      "text": "خدمات Keystone.",
+      "anchor": "start"
+    },
+    "28": {
+      "text": "أيّ فشل في أيّ موضع على",
+      "anchor": "start"
+    },
+    "29": {
+      "text": "هذا المسار يظهر على شكل",
+      "anchor": "start"
+    },
+    "30": {
+      "text": "«تعذّر إنشاء الآلة الافتراضية».",
+      "anchor": "start"
+    }
+  }
+}

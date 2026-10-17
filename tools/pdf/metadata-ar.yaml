@@ -1,0 +1,18 @@
+# Pandoc metadata for the Arabic PDF edition. Used by tools/pdf/build.sh ar.
+# The Arabic edition is typeset by LuaLaTeX (babel, bidi=basic): see header-ar.tex.
+title: "OpenStack، بعد غد"
+subtitle: "تشغيل منصّات OpenStack الحرجة"
+author: "Soufian Zaouam"
+lang: ar
+dir: rtl
+subject: "تشغيل منصّات OpenStack الحرجة في الإنتاج (عمليات اليوم الثاني)"
+keywords: [OpenStack, عمليات اليوم الثاني, سحابة خاصة, هندسة المنصّات, الموثوقية, الحوكمة]
+
+documentclass: book
+classoption: [openany, twoside]
+fontsize: 11pt
+toc: true
+toc-depth: 0
+toc-title: المحتويات
+colorlinks: false
+links-as-notes: false
