@@ -14,48 +14,48 @@ How to contribute to a translation: [CONTRIBUTING.md](CONTRIBUTING.md). Arabic g
 | draft | merged as a first draft that still needs a full review by a second reader (see the pull request or issue in the last column) |
 | needs update | the English text changed after the translation; the file must be revised |
 
-The English edition is the reference; the French edition is complete and maintained by the author. Figures: the French figures are complete (`assets/figures/fr/`); the Arabic figures are listed at the end.
+The English edition is the reference; the French edition is complete and maintained by the author. **The Arabic edition exists as a complete first draft**: every file is translated and passes the structural checks, but each chapter still needs a full review by a second reader (linguistic and technical) before it is marked *translated*. Reviewing a draft chapter is the most useful contribution right now: claim it with a *Translate a chapter* issue ("Review a merged draft in depth"), read it against the English, and open a pull request with your corrections. Figures: the French and Arabic figures are complete (`assets/figures/fr/`, `assets/figures/ar/`).
 
 ## Chapters
 
 | File (English) | Chapter | French | Arabic | Issue / PR |
 | --- | --- | --- | --- | --- |
 | `00-front-matter.md` | Front matter | translated | draft | |
-| `00-how-to-read-this-book.md` | How to Read This Book | translated | not started | |
-| `00-introduction.md` | Introduction | translated | not started | |
-| `01-openstack-doesnt-end-at-deployment.md` | 1 — OpenStack Doesn't End at Deployment | translated | not started | |
-| `02-the-enemy-is-loss-of-control.md` | 2 — The Enemy Is Loss of Control | translated | not started | |
-| `03-why-good-platforms-become-difficult-to-operate.md` | 3 — Why Good Platforms Become Difficult to Operate | translated | not started | |
+| `00-how-to-read-this-book.md` | How to Read This Book | translated | draft | |
+| `00-introduction.md` | Introduction | translated | draft | |
+| `01-openstack-doesnt-end-at-deployment.md` | 1 — OpenStack Doesn't End at Deployment | translated | draft | |
+| `02-the-enemy-is-loss-of-control.md` | 2 — The Enemy Is Loss of Control | translated | draft | |
+| `03-why-good-platforms-become-difficult-to-operate.md` | 3 — Why Good Platforms Become Difficult to Operate | translated | draft | |
 | `04-the-control-loop.md` | 4 — The Control Loop | translated | draft | |
-| `05-assessing-platform-control.md` | 5 — Assessing Platform Control | translated | not started | |
-| `06-measuring-control.md` | 6 — Measuring Control | translated | not started | |
-| `07-when-control-is-already-lost.md` | 7 — When Control Is Already Lost | translated | not started | |
-| `08-visibility-before-action.md` | 8 — Visibility Before Action | translated | not started | |
-| `09-stability-and-change.md` | 9 — Stability and Change | translated | not started | |
-| `10-recovery-is-a-feature.md` | 10 — Recovery Is a Feature | translated | not started | |
-| `11-documentation-is-operational-memory.md` | 11 — Documentation Is Operational Memory | translated | not started | |
-| `12-building-the-team-behind-the-platform.md` | 12 — Building the Team Behind the Platform | translated | not started | |
-| `13-decision-rights.md` | 13 — Decision Rights | translated | not started | |
-| `14-upgrades-backports-and-upstream-alignment.md` | 14 — Upgrades, Backports and Upstream Alignment | translated | not started | |
-| `15-complexity-technical-debt-and-simplification.md` | 15 — Complexity, Technical Debt and Simplification | translated | not started | |
-| `16-automation-and-operational-complexity.md` | 16 — Automation and Operational Complexity | translated | not started | |
-| `17-security-is-platform-work.md` | 17 — Security Is Platform Work | translated | not started | |
-| `18-evolving-a-mission-critical-platform.md` | 18 — Evolving a Mission-Critical Platform | translated | not started | |
-| `19-when-the-safe-decision-is-to-stop.md` | 19 — When the Safe Decision Is to Stop | translated | not started | |
-| `20-security-capacity-and-business-criticality.md` | 20 — Security, Capacity and Business Criticality | translated | not started | |
-| `21-conclusion-keeping-openstack-under-control.md` | Conclusion: Keeping OpenStack Under Control | translated | not started | |
+| `05-assessing-platform-control.md` | 5 — Assessing Platform Control | translated | draft | |
+| `06-measuring-control.md` | 6 — Measuring Control | translated | draft | |
+| `07-when-control-is-already-lost.md` | 7 — When Control Is Already Lost | translated | draft | |
+| `08-visibility-before-action.md` | 8 — Visibility Before Action | translated | draft | |
+| `09-stability-and-change.md` | 9 — Stability and Change | translated | draft | |
+| `10-recovery-is-a-feature.md` | 10 — Recovery Is a Feature | translated | draft | |
+| `11-documentation-is-operational-memory.md` | 11 — Documentation Is Operational Memory | translated | draft | |
+| `12-building-the-team-behind-the-platform.md` | 12 — Building the Team Behind the Platform | translated | draft | |
+| `13-decision-rights.md` | 13 — Decision Rights | translated | draft | |
+| `14-upgrades-backports-and-upstream-alignment.md` | 14 — Upgrades, Backports and Upstream Alignment | translated | draft | |
+| `15-complexity-technical-debt-and-simplification.md` | 15 — Complexity, Technical Debt and Simplification | translated | draft | |
+| `16-automation-and-operational-complexity.md` | 16 — Automation and Operational Complexity | translated | draft | |
+| `17-security-is-platform-work.md` | 17 — Security Is Platform Work | translated | draft | |
+| `18-evolving-a-mission-critical-platform.md` | 18 — Evolving a Mission-Critical Platform | translated | draft | |
+| `19-when-the-safe-decision-is-to-stop.md` | 19 — When the Safe Decision Is to Stop | translated | draft | |
+| `20-security-capacity-and-business-criticality.md` | 20 — Security, Capacity and Business Criticality | translated | draft | |
+| `21-conclusion-keeping-openstack-under-control.md` | Conclusion: Keeping OpenStack Under Control | translated | draft | |
 
 ## Appendices
 
 | File (English) | Appendix | French | Arabic | Issue / PR |
 | --- | --- | --- | --- | --- |
-| `appendix-a-the-control-decision-framework.md` | A — The Control Decision Framework | translated | not started | |
-| `appendix-b-the-control-assessment-worksheet.md` | B — The Control Assessment Worksheet | translated | not started | |
-| `appendix-c-a-minimum-change-decision-record.md` | C — A Minimum Change Decision Record | translated | not started | |
-| `appendix-d-control-review-questions.md` | D — Control Review Questions | translated | not started | |
-| `appendix-e-operating-principles-at-a-glance.md` | E — Operating Principles at a Glance | translated | not started | |
-| `appendix-f-glossary.md` | F — Glossary | translated | not started | |
-| `references-and-further-reading.md` | References and Further Reading | translated | not started | |
+| `appendix-a-the-control-decision-framework.md` | A — The Control Decision Framework | translated | draft | |
+| `appendix-b-the-control-assessment-worksheet.md` | B — The Control Assessment Worksheet | translated | draft | |
+| `appendix-c-a-minimum-change-decision-record.md` | C — A Minimum Change Decision Record | translated | draft | |
+| `appendix-d-control-review-questions.md` | D — Control Review Questions | translated | draft | |
+| `appendix-e-operating-principles-at-a-glance.md` | E — Operating Principles at a Glance | translated | draft | |
+| `appendix-f-glossary.md` | F — Glossary | translated | draft | |
+| `references-and-further-reading.md` | References and Further Reading | translated | draft | |
 
 ## Figures
 
@@ -63,11 +63,11 @@ The Arabic figures are generated from the English ones by `tools/figures/transla
 
 | Figure | Chapter | French | Arabic |
 | --- | --- | --- | --- |
-| 1.1 | 1 | translated | not started |
+| 1.1 | 1 | translated | translated |
 | 4.1 | 4 | translated | translated |
-| 5.1 | 5 | translated | not started |
-| 14.1 | 14 | translated | not started |
-| 20.1 | 20 | translated | not started |
+| 5.1 | 5 | translated | translated |
+| 14.1 | 14 | translated | translated |
+| 20.1 | 20 | translated | translated |
 
 ## Other documents
 

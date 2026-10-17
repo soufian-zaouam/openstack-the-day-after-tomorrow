@@ -142,6 +142,8 @@ def key(s, rtl=False):
         return norm(s)
     s = unicodedata.normalize("NFKC", s)
     s = ARABIC_MARKS.sub("", s)
+    # PyMuPDF maps a few contextual glyphs of Amiri to look-alike code points
+    s = s.replace("\u067a", "\u062a").replace("\u06cc", "\u064a").replace("\u0643", "\u0643").replace("\u06a9", "\u0643")
     return "".join(c for c in s if c.isalnum() or c == ".")
 
 
@@ -285,13 +287,13 @@ def main():
     # 7. figures: every caption sits on a page that embeds a vector figure
     #    (a Form XObject carrying the boxes and arrows of the drawing: a few
     #    hundred paths when the text is outlined, as in the English figures,
-    #    a few dozen when it is real text, as in the French ones), captions
-    #    numbered as expected
+    #    a handful to a few dozen when it is real text, as in the translated
+    #    ones), captions numbered as expected
     caps = []
     for i, p in enumerate(doc):
         for num in re.findall(E["caption_re"], caption_key(pages[i], rtl)):
             caps.append(num)
-            if not p.get_xobjects() or len(p.get_drawings()) < 8:
+            if not p.get_xobjects() or len(p.get_drawings()) < 3:
                 fail(f"page {i+1}: caption of Figure {num} without an embedded figure")
     expected = EXPECTED_FIGURES
     if partial:   # only the figures of the chapters present

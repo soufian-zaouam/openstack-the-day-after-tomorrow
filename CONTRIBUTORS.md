@@ -18,7 +18,7 @@ Community translation, supervised by the author. Method and glossary: [`ar/STYLE
 
 | Contributor | Role | Chapters |
 | --- | --- | --- |
-| Soufian Zaouam | editorial supervision, glossary, first draft of the chapters listed in TRANSLATIONS.md | |
+| Soufian Zaouam | editorial supervision, glossary, first complete draft (every file, see TRANSLATIONS.md) | all |
 
 ## Corrections and suggestions
 
