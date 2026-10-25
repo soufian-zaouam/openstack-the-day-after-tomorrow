@@ -9,9 +9,12 @@ Versioning scheme:
 - **Minor** (`v1.1`): revised or expanded sections, new figures, corrections that change the technical content.
 - Simple typo fixes are batched into the next minor version rather than released on their own.
 
-## [Unreleased]
+## [v1.3] — 2026-10-25
+
+Technical correction to Chapter 20, in both editions.
 
 - Chapter 20, technical note on host maintenance (both editions): instances with SR-IOV `direct` ports can be live-migrated with the libvirt driver since the Train release (Nova 20.0.0), at the cost of a brief loss of that interface in the guest; only `direct-physical` ports stay with PCI passthrough among the instances that cannot be live-migrated. Reference to the Nova Train release notes added.
+- README (both editions): link to [OpenStack Operator Skills](https://github.com/soufian-zaouam/openstack-operator-skills), the book's operating method as Agent Skills for Claude, among the companion resources.
 
 ## [v1.2] — 2026-10-17
 

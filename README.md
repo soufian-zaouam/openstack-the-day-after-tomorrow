@@ -117,6 +117,7 @@ Throughout the text, three kinds of boxed passage from the PDF are rendered as q
 
 - **[Short Guide](https://github.com/soufian-zaouam/openstack-the-day-after-tomorrow-guide)** — the book's ideas in 18 illustrated pages, one idea and one figure per page. The quickest way in, and a shared reference for teams and sponsors.
 - **[OpenStack Production Guide](https://github.com/soufian-zaouam/openstack-production-guide)** — the practical companion: troubleshooting by symptom, by command and by error message, the *One Command, One Investigation* series (20 episodes), and six anonymised incident cases in RCA format. Several *From the field* passages of the book are developed there with their technical file.
+- **[OpenStack Operator Skills](https://github.com/soufian-zaouam/openstack-operator-skills)** — the book's operating method as seven Agent Skills for Claude: incident analysis, change review, maintenance planning, operational decisions, control assessment, automation review and runbook authoring. They make an AI assistant investigate before acting, keep a way back and leave disruptive decisions to the people accountable for them. Apache-2.0, evaluated with and without the skills.
 
 ## Who it is for
 
@@ -136,7 +137,7 @@ Deployment is the beginning of the operational journey, not the end. The hard-wo
 
 | | |
 |---|---|
-| **Current version** | v1.2 |
+| **Current version** | v1.3 |
 | **Published** | October 2026 |
 | **Format** | PDF (English, 114 pages; French, 125 pages) · Markdown (this repository) |
 | **Download** | **[Latest release →](https://github.com/soufian-zaouam/openstack-the-day-after-tomorrow/releases/latest)** |
@@ -164,7 +165,7 @@ For uses not covered by the licence — translations into other languages, excer
 
 ## Citing this book
 
-> Zaouam, S. (2026). *OpenStack, the Day After Tomorrow: Operating Mission-Critical OpenStack Platforms* (v1.2). https://github.com/soufian-zaouam/openstack-the-day-after-tomorrow
+> Zaouam, S. (2026). *OpenStack, the Day After Tomorrow: Operating Mission-Critical OpenStack Platforms* (v1.3). https://github.com/soufian-zaouam/openstack-the-day-after-tomorrow
 
 A machine-readable citation is provided in [CITATION.cff](CITATION.cff).
 

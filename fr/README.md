@@ -110,6 +110,7 @@ Chaque fichier français porte le même numéro de chapitre ou la même lettre d
 
 - **[Short Guide](https://github.com/soufian-zaouam/openstack-the-day-after-tomorrow-guide)** — les idées du livre en 18 pages illustrées, une idée et une figure par page (en anglais). La porte d’entrée la plus rapide, et une référence partagée pour les équipes et les sponsors.
 - **[OpenStack Production Guide](https://github.com/soufian-zaouam/openstack-production-guide)** — le compagnon pratique (en anglais) : dépannage par symptôme, par commande et par message d’erreur, la série *One Command, One Investigation* (20 épisodes), et six cas d’incidents anonymisés au format RCA. Plusieurs passages *Sur le terrain* du livre y sont développés avec leur dossier technique.
+- **[OpenStack Operator Skills](https://github.com/soufian-zaouam/openstack-operator-skills)** — la méthode du livre sous forme de sept Agent Skills pour Claude (en anglais) : analyse d’incident, revue de changement, planification de maintenance, décisions d’exploitation, évaluation du contrôle, revue d’automatisation et rédaction de runbooks. Elles amènent un assistant IA à investiguer avant d’agir, à garder un chemin de retour et à laisser les décisions perturbatrices aux personnes qui en répondent. Licence Apache-2.0, évaluées avec et sans les skills.
 
 ## À qui il s’adresse
 
@@ -131,7 +132,7 @@ Le déploiement est le début du parcours opérationnel, pas sa fin. Les leçons
 
 | | |
 |---|---|
-| **Version courante** | v1.2 |
+| **Version courante** | v1.3 |
 | **Publication** | octobre 2026 |
 | **Format** | PDF (français), 125 pages · Markdown (ce dépôt) |
 | **Télécharger** | **[Dernière version →](https://github.com/soufian-zaouam/openstack-the-day-after-tomorrow/releases/latest)** |
@@ -159,7 +160,7 @@ Pour les usages non couverts par la licence — traductions dans d’autres lang
 
 ## Citer ce livre
 
-> Zaouam, S. (2026). *OpenStack, après-demain : exploiter des plateformes OpenStack critiques* (v1.2, édition française d’*OpenStack, the Day After Tomorrow*). https://github.com/soufian-zaouam/openstack-the-day-after-tomorrow
+> Zaouam, S. (2026). *OpenStack, après-demain : exploiter des plateformes OpenStack critiques* (v1.3, édition française d’*OpenStack, the Day After Tomorrow*). https://github.com/soufian-zaouam/openstack-the-day-after-tomorrow
 
 Une citation lisible par machine est fournie dans [CITATION.cff](../CITATION.cff).
 
