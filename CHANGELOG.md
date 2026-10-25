@@ -9,6 +9,10 @@ Versioning scheme:
 - **Minor** (`v1.1`): revised or expanded sections, new figures, corrections that change the technical content.
 - Simple typo fixes are batched into the next minor version rather than released on their own.
 
+## [Unreleased]
+
+- Chapter 20, technical note on host maintenance (both editions): instances with SR-IOV `direct` ports can be live-migrated with the libvirt driver since the Train release (Nova 20.0.0), at the cost of a brief loss of that interface in the guest; only `direct-physical` ports stay with PCI passthrough among the instances that cannot be live-migrated. Reference to the Nova Train release notes added.
+
 ## [v1.2] — 2026-10-17
 
 French edition of the book, *OpenStack, après-demain : exploiter des plateformes OpenStack critiques*, maintained in this repository alongside the original. Same text, same structure, same version number.
